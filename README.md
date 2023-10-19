@@ -5,7 +5,7 @@ This is a simple calculator project in model Client-Server.
 Enables simple calculations: addition, subtraction, multiplication and division;
 
 # Technologies:
-* Java
+* Java 17
 * JavaFX
 * SceneBuilder
 * CSS
