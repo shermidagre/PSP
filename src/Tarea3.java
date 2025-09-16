@@ -1,30 +1,62 @@
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Tarea3 {
     public static void main(String[] args) throws IOException {
 
         Scanner scanner = new Scanner(System.in);
-        boolean esWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
 
-        System.out.println("En que so estas trabajando? (Windows/Linux)");
-        String so = scanner.next();
+        System.out.println("En que so estas trabajando? (windows/linux)");
+        String so = scanner.next().toLowerCase(); // ponga como lo ponga que lo pase todo a minusculas
 
-        if (!so.equalsIgnoreCase("windows") &&!so.equalsIgnoreCase("linux")) {
-            System.out.println("El sistema operativo introducido no es valido. Se utilizara Windows por defecto.");
-            so = "cmd /C";
-        }else {so = "sh -c";  }
+        String[] comando = new String[0];
 
-        System.out.println("Introduce la ruta donde quieres crear o abrir el archivo");
-        String ruta = scanner.next(); // la ruta donde se encuentra el editor de texto gnome-text-editor
+        if (so.equalsIgnoreCase("windows")) {
+            System.out.println("Introduce la ruta del archivo (ej: C:\\Users\\Usuario\\Escritorio)");
+            System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
+            System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
+            String rutaabsula = scanner.nextLine().toLowerCase();
+            if (rutaabsula.equalsIgnoreCase("no")) {
 
-        System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
-        String archivo = scanner.next(); // lo denominamos como un escaner para que la persona pueda escribir el archivo al qu equiera entrar+
+                System.out.println("La ruta que debe escribir es :");
+               String rutausuario = System.getProperty("user.dir");
+                System.out.println("Tu ruta actual es: "+rutausuario);
+            }
+            String ruta = scanner.next();
+            System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+            String archivo = scanner.next();
+            String rutacompleta = ruta + "\\" + archivo + ".txt";
+            comando = new String[]{"cmd", "/C", "start", "notepad", rutacompleta};
+        }
 
-        String comando = so + " " + "\"" + ruta + "\\" + archivo + ".txt\""; // el comando para abrir el archivo
+        else if (so.equalsIgnoreCase("linux")) {
+            System.out.println("Introduce la ruta del archivo (ej: /home/Usuario/Documentos)");
+            System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
+            System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
+            String rutaabsula = scanner.nextLine().toLowerCase();
+            if (rutaabsula.equalsIgnoreCase("no")) {
 
-        System.out.println("El comando para abrir el archivo es: " + comando);
-        Runtime.getRuntime().exec(comando); // ejecutamos el comando
+                System.out.println("La ruta que debe escribir es :");
+                String rutausuario = System.getProperty("user.dir");
+                System.out.println("Tu ruta actual es: " + rutausuario);
+            } else {
+                String ruta = scanner.next();
+                System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+                String archivo = scanner.next();
+                String rutacompleta = ruta + "/" + archivo + ".txt";
+                comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
+            }
+        }
+        else {
+            System.out.println("El sistema operativo introducido no es valido.");
+            scanner.close();
+            return;
+        }
+
+
+        System.out.println("Ejecutando comando para abrir el archivo...");
+        Process p = Runtime.getRuntime().exec(comando); // ejecutamos el comando
         scanner.close(); // cerramos el scanner para que no siga escaneando durante la ejecución del programa
 
     }
