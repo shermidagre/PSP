@@ -61,6 +61,7 @@ public class Tarea3 {
         }
 
 
+
         System.out.println("terminado");
         System.out.println("mensaje de depuracion" + Arrays.toString(comando));
         Runtime.getRuntime().exec(comando);
