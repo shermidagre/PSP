@@ -13,6 +13,7 @@ public class Tarea3 {
         String[] comando = new String[0];
         String ruta;
 
+
         if (so.equalsIgnoreCase("windows")) {
             System.out.println("Introduce la ruta del archivo (ej: C:\\Users\\Usuario\\Escritorio)");
             System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
