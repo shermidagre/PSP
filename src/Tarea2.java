@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Properties;
 
 public class Tarea2 {
     public static void main(String[] args) {
@@ -14,5 +15,7 @@ public class Tarea2 {
         int procesadoresenuso = r.availableProcessors();
         System.out.println("Procesadores en uso "+procesadoresenuso); // metodo para ver los procesadores en uso
 
+        String propiedades = String.valueOf(System.getProperties());
+        System.out.println("Propiedades del sistema: "+propiedades);
     }
 }
