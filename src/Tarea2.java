@@ -17,5 +17,6 @@ public class Tarea2 {
 
         String propiedades = String.valueOf(System.getProperties());
         System.out.println("Propiedades del sistema: "+propiedades);
+
     }
 }
