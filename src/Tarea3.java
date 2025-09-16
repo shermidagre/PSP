@@ -12,7 +12,7 @@ public class Tarea3 {
         scanner.nextLine(); // Consumir el resto de la línea
 
         String[] comando;
-        String ruta;
+        String ruta = "";
 
 
         if (so.equalsIgnoreCase("windows")) {
@@ -25,7 +25,10 @@ public class Tarea3 {
                 System.out.println("Tu ruta actual es: " + rutausuario);
                 System.out.println("Ahora, introduce la ruta completa para asi poder guardar el archivo:");
             }
-            ruta = scanner.nextLine();
+            else {
+                ruta = respuestaRuta;
+            }
+
             System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
             String archivo = scanner.next();
             String rutacompleta = ruta + "\\" + archivo + ".txt";
