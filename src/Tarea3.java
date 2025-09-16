@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Tarea3 {
@@ -9,21 +8,22 @@ public class Tarea3 {
 
         System.out.println("En que so estas trabajando? (windows/linux)");
         String so = scanner.next().toLowerCase(); // ponga como lo ponga que lo pase todo a minusculas
+        scanner.nextLine(); // Consumir el resto de la línea
 
         String[] comando = new String[0];
+        String ruta;
 
         if (so.equalsIgnoreCase("windows")) {
             System.out.println("Introduce la ruta del archivo (ej: C:\\Users\\Usuario\\Escritorio)");
             System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
             System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
-            String rutaabsula = scanner.nextLine().toLowerCase();
-            if (rutaabsula.equalsIgnoreCase("no")) {
-
-                System.out.println("La ruta que debe escribir es :");
-               String rutausuario = System.getProperty("user.dir");
-                System.out.println("Tu ruta actual es: "+rutausuario);
+            String respuestaRuta = scanner.nextLine().toLowerCase();
+            if (respuestaRuta.equalsIgnoreCase("no")) {
+                String rutausuario = System.getProperty("user.dir");
+                System.out.println("Tu ruta actual es: " + rutausuario);
+                System.out.println("Ahora, introduce la ruta completa para asi poder guardar el archivo:");
             }
-            String ruta = scanner.next();
+            ruta = scanner.nextLine();
             System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
             String archivo = scanner.next();
             String rutacompleta = ruta + "\\" + archivo + ".txt";
@@ -34,19 +34,17 @@ public class Tarea3 {
             System.out.println("Introduce la ruta del archivo (ej: /home/Usuario/Documentos)");
             System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
             System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
-            String rutaabsula = scanner.nextLine().toLowerCase();
-            if (rutaabsula.equalsIgnoreCase("no")) {
-
-                System.out.println("La ruta que debe escribir es :");
+            String respuestaRuta = scanner.nextLine().toLowerCase();
+            if (respuestaRuta.equalsIgnoreCase("no")) {
                 String rutausuario = System.getProperty("user.dir");
                 System.out.println("Tu ruta actual es: " + rutausuario);
-            } else {
-                String ruta = scanner.next();
-                System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
-                String archivo = scanner.next();
-                String rutacompleta = ruta + "/" + archivo + ".txt";
-                comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
+                System.out.println("Ahora, introduce la ruta completa para asi poder guardar el archivo:");
             }
+            ruta = scanner.nextLine();
+            System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+            String archivo = scanner.next();
+            String rutacompleta = ruta + "/" + archivo + ".txt";
+            comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
         }
         else {
             System.out.println("El sistema operativo introducido no es valido.");
@@ -56,7 +54,7 @@ public class Tarea3 {
 
 
         System.out.println("Ejecutando comando para abrir el archivo...");
-        Process p = Runtime.getRuntime().exec(comando); // ejecutamos el comando
+        Runtime.getRuntime().exec(comando); // ejecutamos el comando
         scanner.close(); // cerramos el scanner para que no siga escaneando durante la ejecución del programa
 
     }
