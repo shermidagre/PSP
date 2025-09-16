@@ -18,7 +18,7 @@ public class Tarea3 {
             System.out.println("Introduce la ruta del archivo (ej: C:\\Users\\Usuario\\Escritorio)");
             System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
             System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
-            String respuestaRuta = scanner.nextLine().toLowerCase();
+            String respuestaRuta = scanner.nextLine().toLowerCase(); //
             if (respuestaRuta.equalsIgnoreCase("no")) {
                 String rutausuario = System.getProperty("user.dir");
                 System.out.println("Tu ruta actual es: " + rutausuario);
@@ -40,13 +40,20 @@ public class Tarea3 {
                 String rutausuario = System.getProperty("user.dir");
                 System.out.println("Tu ruta actual es: " + rutausuario);
                 System.out.println("Ahora, introduce la ruta completa para asi poder guardar el archivo:");
+                ruta = scanner.nextLine();
+
+                System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+                String archivo = scanner.next();
+                String rutacompleta = ruta + "/" + archivo + ".txt";
+                comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
+            }else {
+                ruta = scanner.nextLine();
+                System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+                String archivo = scanner.next();
+                String rutacompleta = ruta + "/" + archivo + ".txt";
+                comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
             }
-            ruta = scanner.nextLine();
-            System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
-            String archivo = scanner.next();
-            String rutacompleta = ruta + "/" + archivo + ".txt";
-            comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
-        }
+            }
         else {
             System.out.println("El sistema operativo introducido no es valido.");
             scanner.close();
@@ -54,9 +61,13 @@ public class Tarea3 {
         }
 
 
-        System.out.println("Ejecutando comando para abrir el archivo...");
-        Runtime.getRuntime().exec(comando); // ejecutamos el comando
-        scanner.close(); // cerramos el scanner para que no siga escaneando durante la ejecución del programa
+        System.out.println("terminado");
+        System.out.println("mensaje de depuracion" + comando);
+        Runtime.getRuntime().exec(comando);
+        scanner.close(); //
+
+    }
+    static void respuestalinux (){
 
     }
 }
