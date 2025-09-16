@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Tarea3 {
@@ -6,21 +7,66 @@ public class Tarea3 {
 
         Scanner scanner = new Scanner(System.in);
 
-        boolean esWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
+        System.out.println("En que so estas trabajando? (windows/linux)");
+        String so = scanner.next().toLowerCase(); // ponga como lo ponga que lo pase todo a minusculas
+        scanner.nextLine(); // Consumir el resto de la línea
 
-        String ruta = ""; // la ruta donde se encuentra el editor de texto gnome-text-editor
-        String archivo = scanner.nextline(); // lo denominamos como un escaner para que la persona pueda escribir el archivo al qu equiera entrar+
-        String [] pbloc = {ruta,"gnome-text-editor",archivo};
-        Runtime.getRuntime().exec(pbloc); // esto abre el editor de texto
+        String[] comando;
+        String ruta = "";
 
-        if (esWindows){
-            ruta = "cmd /C";
-            System.out.println("Escribe tu archivo aqui");
+
+        if (so.equalsIgnoreCase("windows")) {
+            System.out.println("Introduce la ruta del archivo (ej: C:\\Users\\Usuario\\Escritorio)");
+            System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
+            System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
+            String respuestaRuta = scanner.nextLine().toLowerCase(); //
+            if (respuestaRuta.equalsIgnoreCase("no")) {
+                String rutausuario = System.getProperty("user.dir");
+                System.out.println("Tu ruta actual es: " + rutausuario);
+                System.out.println("Ahora, introduce la ruta completa para asi poder guardar el archivo:");
+            }
+            else {
+                ruta = respuestaRuta;
+            }
+
+            System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+            String archivo = scanner.next();
+            String rutacompleta = ruta + "\\" + archivo + ".txt";
+            comando = new String[]{"cmd", "/C", "start", "notepad", rutacompleta};
         }
+
+        else if (so.equalsIgnoreCase("linux")) {
+            System.out.println("Introduce la ruta del archivo (ej: /home/Usuario/Documentos)");
+            System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
+            System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
+            String respuestaRuta = scanner.nextLine();
+            if (respuestaRuta.equalsIgnoreCase("no")) {
+                String rutausuario = System.getProperty("user.dir");
+                System.out.println("Tu ruta actual es: " + rutausuario);
+                System.out.println("Ahora, introduce la ruta completa para guardar el archivo:");
+                ruta = scanner.nextLine();
+            } else {
+            ruta = respuestaRuta;
+        }
+
+        System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+        String archivo = scanner.next();
+        String rutacompleta = ruta + "/" + archivo + ".txt";
+        comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
+    }
         else {
-            ruta = "sh -c";
-            System.out.println("Escribe tu archivo aqui");
+            System.out.println("El sistema operativo introducido no es valido.");
+            scanner.close();
+            return;
         }
+
+
+
+        System.out.println("terminado");
+        System.out.println("mensaje de depuracion" + Arrays.toString(comando));
+        Runtime.getRuntime().exec(comando);
+        scanner.close(); //
 
     }
+
 }
