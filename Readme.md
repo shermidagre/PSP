@@ -1,6 +1,4 @@
 
-#  Tareas de Java: Sistema y Runtime + Editor de Archivos
-
 > Explora las capacidades del entorno de ejecución de Java y crea una herramienta útil para manipular archivos desde la terminal.
 
 ---
