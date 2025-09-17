@@ -53,9 +53,9 @@ Perfecto, aquí tienes el `README.md` **estrictamente basado en el texto que me 
 
 ---
 
-# TAREA 4: Información del Sistema y JVM
+## TAREA 4: Información del Sistema y JVM
 
-## 📋 Objetivo
+### 📋 Objetivo
 
 Crea un programa en Java que ejecute `dir` o `ls` en función del sistema operativo. Utiliza la clase `System`. Luego, que haga lo siguiente:
 
