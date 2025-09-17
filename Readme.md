@@ -26,13 +26,6 @@ Crea un programa en Java que permita al usuario:
 -  Ingresar la **ruta completa o nombre del archivo** (incluyendo extensión).
 -  Si el archivo no existe, el sistema lo creará automáticamente al abrirlo con el editor.
 
-###  Ejemplo de uso esperado:
-
-```bash
-$ java FileEditor
-Ingresa la ruta del archivo: mi_documento.txt
-→ Abriendo "mi_documento.txt" con gedit...
-```
 
 ### Compatibilidad sugerida:
 
