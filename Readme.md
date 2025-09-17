@@ -11,8 +11,6 @@
 
 ---
 
-✅ Listo. Sin extras, sin adornos. Solo los enlaces, como solicitaste.
-
 ##  Tarea 2: Información del Sistema y JVM
 
 ### 📋 Objetivo
