@@ -1,14 +1,11 @@
-¡Claro! Aquí tienes una versión bonita, profesional y bien estructurada de tu `README.md`, con formato atractivo, emojis, secciones claras y un toque moderno:
 
----
-
-# 📚 Tareas de Java: Sistema y Runtime + Editor de Archivos
+#  Tareas de Java: Sistema y Runtime + Editor de Archivos
 
 > ✨ Explora las capacidades del entorno de ejecución de Java y crea una herramienta útil para manipular archivos desde la terminal.
 
 ---
 
-## 🎯 TAREA 2: Información del Sistema y JVM
+##  TAREA 2: Información del Sistema y JVM
 
 ### 📋 Objetivo
 
@@ -18,7 +15,7 @@ Revisa la documentación de las clases `System` y `Runtime` para desarrollar un 
 - ⚙️ **Número de procesadores** disponibles para la JVM.
 - 🏷️ **Todas las propiedades del sistema** (`System.getProperties()`) junto con sus valores.
 
-### 🧠 ¿Qué aprenderás?
+### ¿Qué aprenderás?
 
 - Cómo obtener información del entorno de ejecución con `Runtime.getRuntime()`.
 - Cómo acceder a las propiedades del sistema con `System.getProperties()`.
@@ -37,7 +34,7 @@ Crea un programa en Java que permita al usuario:
 - 📍 Ingresar la **ruta completa o nombre del archivo** (incluyendo extensión).
 - ✅ Si el archivo no existe, el sistema lo creará automáticamente al abrirlo con el editor.
 
-### 💡 Ejemplo de uso esperado:
+###  Ejemplo de uso esperado:
 
 ```bash
 $ java FileEditor
@@ -45,7 +42,7 @@ Ingresa la ruta del archivo: mi_documento.txt
 → Abriendo "mi_documento.txt" con gedit...
 ```
 
-### 🌍 Compatibilidad sugerida:
+### Compatibilidad sugerida:
 
 - Linux:  `gnome-text-editor`
 - Windows: `notepad`
