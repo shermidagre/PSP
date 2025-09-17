@@ -7,7 +7,7 @@
 
 - [TAREA 2: Información del Sistema y JVM](#tarea-2-información-del-sistema-y-jvm)
 - [TAREA 3: Editor de Archivos desde Consola](#tarea-3-editor-de-archivos-desde-consola)
-- [TAREA 4: Información del Sistema y JVM](#tarea-4-información-del-sistema-y-jvm)
+- [TAREA 4: Directorios y rutas](#tarea-4-directorios-y-rutas)
 
 ---
 
