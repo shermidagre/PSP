@@ -37,17 +37,17 @@ public class Tarea3 {
                 ruta = respuestaRuta;
             }
             System.out.println("en caso de que desees utilizar un editor de texto diferente a notepad, introduce su nombre, en caso de que no escribe no");
-            editadortextos = scanner.nextLine().toLowerCase();
+            editadortextos = scanner.nextLine().trim();
             if (editadortextos.equalsIgnoreCase("no")) {
                 System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
                 String archivo = scanner.next();
                 String rutacompleta = ruta + "\\" + archivo + ".txt";
-                comando = new String[]{"cmd", "/C", "start", editadortextos, rutacompleta};
+                comando = new String[]{"cmd", "/C", "start", "notepad", rutacompleta};
             }else {
                 System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
                 String archivo = scanner.next();
                 String rutacompleta = ruta + "\\" + archivo + ".txt";
-                comando = new String[]{"cmd", "/C", "start", "notepad", rutacompleta};
+                comando = new String[]{"cmd", "/C", "start", editadortextos + " " + rutacompleta};
             }
         }
 
@@ -66,7 +66,7 @@ public class Tarea3 {
             }
 
             System.out.println("en caso de que desees utilizar un editor de texto diferente a genome, introduce su nombre, en caso de que no escribe no");
-            editadortextos = scanner.nextLine().toLowerCase();
+            editadortextos = scanner.nextLine().trim();
             if (editadortextos.equalsIgnoreCase("no")) {
                 System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
                 String archivo = scanner.next();
@@ -77,7 +77,7 @@ public class Tarea3 {
             System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
             String archivo = scanner.next();
             String rutacompleta = ruta + "/" + archivo + ".txt";
-            comando = new String[]{"sh", "-c",  editadortextos + rutacompleta};
+            comando = new String[]{"sh", "-c",  editadortextos + " " + rutacompleta};
         }
     }
         else {
@@ -88,7 +88,6 @@ public class Tarea3 {
 
 
 
-        System.out.println("terminado");
         System.out.println("mensaje de depuracion" + Arrays.toString(comando));
         Runtime.getRuntime().exec(comando);
         scanner.close(); //
