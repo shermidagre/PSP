@@ -3,7 +3,17 @@
 
 ---
 
-##  TAREA 2: Información del Sistema y JVM
+## Indice
+
+- [TAREA 2: Información del Sistema y JVM](#tarea-2-información-del-sistema-y-jvm)
+- [TAREA 3: Editor de Archivos desde Consola](#tarea-3-editor-de-archivos-desde-consola)
+- [TAREA 4: Información del Sistema y JVM](#tarea-4-información-del-sistema-y-jvm)
+
+---
+
+✅ Listo. Sin extras, sin adornos. Solo los enlaces, como solicitaste.
+
+##  Tarea 2: Información del Sistema y JVM
 
 ### 📋 Objetivo
 
@@ -15,7 +25,7 @@ Revisa la documentación de las clases `System` y `Runtime` para desarrollar un 
 
 ---
 
-##  TAREA 3: Editor de Archivos desde Consola
+##  Tarea 3: Editor de Archivos desde Consola
 
 ### 📋 Objetivo
 
@@ -36,7 +46,7 @@ Crea un programa en Java que permita al usuario:
 
 ---
 
-## TAREA 4: Información del Sistema y JVM
+## Tarea 4: Directorios y rutas
 
 ### 📋 Objetivo
 
