@@ -41,8 +41,6 @@ Ingresa la ruta del archivo: mi_documento.txt
 
 > ⚠️ El programa debe detectar el sistema operativo y elegir un editor predeterminado adecuado, o permitir configurarlo.
 
-Perfecto, aquí tienes el `README.md` **estrictamente basado en el texto que me enviaste**, sin añadidos, interpretaciones ni extensiones:
-
 ---
 
 ## TAREA 4: Información del Sistema y JVM
