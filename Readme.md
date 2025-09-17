@@ -13,12 +13,6 @@ Revisa la documentación de las clases `System` y `Runtime` para desarrollar un 
 -  **Número de procesadores** disponibles para la JVM.
 -  **Todas las propiedades del sistema** (`System.getProperties()`) junto con sus valores.
 
-### ¿Qué aprenderás?
-
-- Cómo obtener información del entorno de ejecución con `Runtime.getRuntime()`.
-- Cómo acceder a las propiedades del sistema con `System.getProperties()`.
-- Manejo de unidades de memoria y formato legible para el usuario.
-
 ---
 
 ##  TAREA 3: Editor de Archivos desde Consola
