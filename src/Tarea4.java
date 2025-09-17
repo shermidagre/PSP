@@ -9,13 +9,15 @@ public class Tarea4 {
         if(esLinux){
             pb.command().add(0,"sh");
             pb.command().add(1,"-c");
-            pb.command().add(2,"dir");
+            pb.command().add(2,"ls");
         }else {
             pb.command().add(0,"cmd");
-            pb.command().add(1,"/c");
-            pb.command().add(2,"ls");
+            pb.command().add(1,"\\c");
+            pb.command().add(2,"dir");
         }
         System.out.println("Mensaje de depuracion comandos: "+pb.command());
+
+
         String ruta = System.getProperty("user.dir");
         System.out.println("Otra vez por aqui chavales \nEj 1. Quieres saber tu ruta por defecto?\nAqui la tienes my king: "+ruta );
         String directorio = new File(ruta).getName();
