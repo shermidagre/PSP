@@ -8,17 +8,22 @@ public class Tarea3 {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Gracias a nuestro sistema, detectamos en so estas trabajando");
+        System.out.println("El SO que estas trabajando es: " + System.getProperty("os.name"));
 
+        /*
         System.out.println("En que so estas trabajando? (windows/linux)");
         String so = scanner.next().toLowerCase(); // ponga como lo ponga que lo pase todo a minusculas
         scanner.nextLine(); // Consumir el resto de la línea
+        */
+
 
         String[] comando;
         String ruta = "";
         String editadortextos = "";
 
 
-        if (so.equalsIgnoreCase("windows")) {
+        if ((System.getProperty("os.name").toLowerCase().startsWith("windows"))) {
             System.out.println("Introduce la ruta del archivo (ej: C:\\Users\\Usuario\\Escritorio)");
             System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
             System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
@@ -46,7 +51,7 @@ public class Tarea3 {
             }
         }
 
-        else if (so.equalsIgnoreCase("linux")) {
+        else if(System.getProperty("os.name").toLowerCase().startsWith("linux") ) {
             System.out.println("Introduce la ruta del archivo (ej: /home/Usuario/Documentos)");
             System.out.println("Cuidado, no funciona con rutas relativas porfavor, siga el ejemplo y ponga su ruta absoluta");
             System.out.println("¿No sabes la ruta absoluta?(si es asi escribe un no)");
