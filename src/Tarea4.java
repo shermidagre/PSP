@@ -3,6 +3,8 @@ import java.io.File;
 public class Tarea4 {
     public static void main(String[] args) {
 
+
+
         String ruta = System.getProperty("user.dir");
         System.out.println("Otra vez por aqui chavales \nEj 1.Quieres saber tu ruta por defecto?\nAqui la tienes my king: "+ruta );
         String directorio = new File(ruta).getName();
