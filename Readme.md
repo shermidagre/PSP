@@ -19,7 +19,7 @@ Revisa la documentación de las clases `System` y `Runtime` para desarrollar un 
 
 -  **Memoria total, libre y en uso** — expresada en **MiB** (Mebibytes).
 -  **Número de procesadores** disponibles para la JVM.
--  **Todas las propiedades del sistema** (`System.getProperties()`) junto con sus valores.
+-  **Las propiedades de la clase System** junto con sus valores.
 
 ---
 
