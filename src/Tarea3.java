@@ -8,6 +8,7 @@ public class Tarea3 {
 
         Scanner scanner = new Scanner(System.in);
 
+
         System.out.println("En que so estas trabajando? (windows/linux)");
         String so = scanner.next().toLowerCase(); // ponga como lo ponga que lo pase todo a minusculas
         scanner.nextLine(); // Consumir el resto de la línea
