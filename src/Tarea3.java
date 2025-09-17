@@ -14,6 +14,7 @@ public class Tarea3 {
 
         String[] comando;
         String ruta = "";
+        String editadortextos = "";
 
 
         if (so.equalsIgnoreCase("windows")) {
@@ -29,11 +30,19 @@ public class Tarea3 {
             else {
                 ruta = respuestaRuta;
             }
-
-            System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
-            String archivo = scanner.next();
-            String rutacompleta = ruta + "\\" + archivo + ".txt";
-            comando = new String[]{"cmd", "/C", "start", "notepad", rutacompleta};
+            System.out.println("en caso de que desees utilizar un editor de texto diferente a notepad, introduce su nombre, en caso de que no escribe no");
+            editadortextos = scanner.nextLine().toLowerCase();
+            if (editadortextos.equalsIgnoreCase("no")) {
+                System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+                String archivo = scanner.next();
+                String rutacompleta = ruta + "\\" + archivo + ".txt";
+                comando = new String[]{"cmd", "/C", "start", editadortextos, rutacompleta};
+            }else {
+                System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+                String archivo = scanner.next();
+                String rutacompleta = ruta + "\\" + archivo + ".txt";
+                comando = new String[]{"cmd", "/C", "start", "notepad", rutacompleta};
+            }
         }
 
         else if (so.equalsIgnoreCase("linux")) {
@@ -47,13 +56,23 @@ public class Tarea3 {
                 System.out.println("Ahora, introduce la ruta completa para guardar el archivo:");
                 ruta = scanner.nextLine();
             } else {
-            ruta = respuestaRuta;
-        }
+                ruta = respuestaRuta;
+            }
 
-        System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
-        String archivo = scanner.next();
-        String rutacompleta = ruta + "/" + archivo + ".txt";
-        comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
+            System.out.println("en caso de que desees utilizar un editor de texto diferente a genome, introduce su nombre, en caso de que no escribe no");
+            editadortextos = scanner.nextLine().toLowerCase();
+            if (editadortextos.equalsIgnoreCase("no")) {
+                System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+                String archivo = scanner.next();
+                String rutacompleta = ruta + "/" + archivo + ".txt";
+                comando = new String[]{"sh", "-c", editadortextos + rutacompleta};
+            } else {
+
+            System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
+            String archivo = scanner.next();
+            String rutacompleta = ruta + "/" + archivo + ".txt";
+            comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
+        }
     }
         else {
             System.out.println("El sistema operativo introducido no es valido.");
