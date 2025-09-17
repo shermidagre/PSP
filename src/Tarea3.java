@@ -71,13 +71,13 @@ public class Tarea3 {
                 System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
                 String archivo = scanner.next();
                 String rutacompleta = ruta + "/" + archivo + ".txt";
-                comando = new String[]{"sh", "-c", editadortextos + rutacompleta};
+                comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
             } else {
 
             System.out.println("Introduce el nombre del archivo que quieres crear o abrir");
             String archivo = scanner.next();
             String rutacompleta = ruta + "/" + archivo + ".txt";
-            comando = new String[]{"sh", "-c", "gnome-text-editor " + rutacompleta};
+            comando = new String[]{"sh", "-c",  editadortextos + rutacompleta};
         }
     }
         else {
