@@ -92,10 +92,6 @@ Introduce un comando (o 'salir' para terminar): salir
 
 ---
 
-¡Claro! Aquí tienes el texto adaptado al formato `README.md`, siguiendo un estilo claro, estructurado y listo para incluir en tu repositorio:
-
----
-
 ## Tarea 7: Ejecución de un script Python desde Java
 
 ### 📋 Objetivo
