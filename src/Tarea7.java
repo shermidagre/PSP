@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Scanner;
@@ -6,20 +7,28 @@ import java.util.Scanner;
 public class Tarea7 {
     public static void main(String[] args) throws IOException, InterruptedException {
 
-            ProcessBuilder pb = new ProcessBuilder("cmd", "\\c","dir");
+            ProcessBuilder pb = new ProcessBuilder("cmd.exe","/c","cd src && dir");
             pb.inheritIO();
             Process p = pb.start();
 
             int exitCode = p.waitFor();
-            System.out.println("el comando ls ha finalizado con código: " + exitCode);
+            System.out.println("el comando ha finalizado con codigo: " + exitCode);
 
-            OutputStream os = pb.start().getOutputStream();
-            OutputStreamWriter wr = new OutputStreamWriter(os);
-            wr.write("Este es el contenido del archivo src/Tarea7.1.py");
+            ProcessBuilder pbw = new ProcessBuilder("python", "src/Tarea7.1.py");
+            pbw.inheritIO();
+            Process p2 = pbw.start();
+            InputStream is = p2.getInputStream();
 
-            System.out.println(wr);
-            wr.close();
+            byte[] bytes = is.readAllBytes();
+            String contenidopy = new String(bytes);
+            System.out.println("Contenido de Tarea7.1.py "+contenidopy);
 
+            int exitCodew = p2.waitFor();
+            System.out.println("el comando echo ha finalizado con código: " + exitCodew);
+
+
+            is.close();
+            System.out.println("Proceso terminado");
 
         }
     }

@@ -18,7 +18,7 @@ public class Tarea5 {
                 break;
             }
 
-            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "\\c", comando);
+            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", comando);
             pb.inheritIO();
             Process p = pb.start();
             int exitCode = p.waitFor();
