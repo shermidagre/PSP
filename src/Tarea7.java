@@ -19,16 +19,14 @@ public class Tarea7 {
             Process p2 = pbw.start();
             InputStream is = p2.getInputStream();
 
-            byte[] bytes = is.readAllBytes();
-            String contenidopy = new String(bytes);
+            String contenidopy = new String(p2.getInputStream().readAllBytes());
+
             System.out.println("Contenido de Tarea7.1.py "+contenidopy);
 
             int exitCodew = p2.waitFor();
-            System.out.println("el comando echo ha finalizado con código: " + exitCodew);
-
+            System.out.println("el comando ha finalizado con código: " + exitCodew);
 
             is.close();
-            System.out.println("Proceso terminado");
 
         }
     }
