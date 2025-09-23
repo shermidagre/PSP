@@ -57,3 +57,88 @@ Crea un programa en Java que ejecute `dir` o `ls` en función del sistema operat
 > **OJO**: El proceso aunque se ejecute no mostrará el listado de directorios.
 
 ---
+Claro, aquí tienes el contenido adaptado al formato `README.md` siguiendo la estructura que indicaste:
+
+---
+
+## Tarea 5: Directorios y rutas
+
+### 📋 Objetivo
+
+Crea un programa en Java que esté en bucle realizando lo siguiente:
+
+1. Pide por consola al usuario un comando y sus parámetros a ejecutar (si fuese necesario) (Por ejemplo, `ls`, `gnome-text-editor`, `open`, etc.).
+2. Lanza el proceso y obtén el código de finalización del mismo.
+3. Muestra el nombre del programa y el código de finalización del mismo.
+
+El programa finaliza cuando el usuario introduce **“salir”** y devolverá un código de salida = `0`.
+
+---
+
+### 🧪 Ejemplo de ejecución
+
+```
+Introduce un comando (o 'salir' para terminar): ls -la
+Ejecutando: ls -la
+Código de finalización: 0
+
+Introduce un comando (o 'salir' para terminar): comandoInexistente
+Ejecutando: comandoInexistente
+Código de finalización: 127
+
+Introduce un comando (o 'salir' para terminar): salir
+¡Hasta luego!
+```
+
+---
+
+¡Claro! Aquí tienes el texto adaptado al formato `README.md`, siguiendo un estilo claro, estructurado y listo para incluir en tu repositorio:
+
+---
+
+## Tarea 7: Ejecución de un script Python desde Java
+
+### 📋 Objetivo
+
+Desde un programa escrito en **Java**, debes:
+
+1. **Ejecutar** el siguiente script de **Python** `Tarea7.1.py` .
+
+---
+
+### Script Python a ejecutar
+
+ `Tarea7.1.py`:
+
+```python
+import json
+import sys
+
+pelicula = {
+    "The Big Lebowski": {
+        "Director": "Joel Coen y Ethan Coen",
+        "Anyo": 1998,
+        "Reparto": [
+            {"Nombre": "Jeff Bridges"},
+            {"Nombre": "John Goodman"},
+            {"Nombre": "Julianne Moore"},
+            {"Nombre": "Steve Buscemi"}
+        ]
+    }
+}
+
+print(json.dumps(pelicula))
+sys.exit(0)
+```
+
+### 🖥️ Ejemplo de salida esperada en Java
+
+```
+Ejecutando script de Python...
+Salida recibida:
+{"The Big Lebowski": {"Director": "Joel Coen y Ethan Coen", "Anyo": 1998, "Reparto": [{"Nombre": "Jeff Bridges"}, {"Nombre": "John Goodman"}, {"Nombre": "Julianne Moore"}, {"Nombre": "Steve Buscemi"}]}}
+Proceso finalizado con código: 0
+```
+
+---
+
