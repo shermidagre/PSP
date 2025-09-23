@@ -1,7 +1,10 @@
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 public class Tarea4 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         boolean esLinux = (System.getProperty("os.name").toLowerCase().startsWith("linux"));
         System.out.println("Mensaje de depuracion funcionamiento so : "+esLinux );
@@ -15,7 +18,11 @@ public class Tarea4 {
             pb.command().add(1,"\\c");
             pb.command().add(2,"dir");
         }
+
         System.out.println("Mensaje de depuracion comandos: "+pb.command());
+        OutputStreamWriter wr = new OutputStreamWriter(pb.start().getOutputStream());
+        System.out.println("Depuracion del out: "+wr.getEncoding());
+
 
 
         String ruta = System.getProperty("user.dir");
