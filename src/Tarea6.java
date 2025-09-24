@@ -61,22 +61,19 @@ public class Tarea6 {
 
 
             // Para leer la salida del comando y asi poder concatenar un string en fucnion del resultado que aslga
+            String linea;
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
             BufferedReader br2 = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             if (exitCode == 0) {
-                System.out.println("Depuracion correcta " + ip);
 
-                String linea;
                 System.out.println(br.readLine());
 
                 while ((linea = br.readLine()) != null) {
                     System.out.println("[OK]" + linea);
                 }
-                System.out.println("Codigo de salida" +exitCode);
+                System.out.println("Codigo de salida : " +exitCode);
 
             }else {
-                    System.out.println("Depuracion error "+ ip );
-                    String linea;
                     while ((linea = br2.readLine()) != null) {
                         System.out.println("[EROR]" + linea);
                     }
