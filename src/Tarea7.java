@@ -12,31 +12,30 @@ public class Tarea7 {
           */
 
 
-            ProcessBuilder pb = new ProcessBuilder("cmd.exe","/c","cd src && dir");
-            pb.inheritIO();
-            Process p = pb.start();
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe","/c","cd src && dir");
+        pb.inheritIO();
+        Process p = pb.start();
 
-            int exitCode = p.waitFor();
-            System.out.println("el comando ha finalizado con codigo: " + exitCode);
+        int exitCode = p.waitFor();
+        System.out.println("el comando ha finalizado con codigo: " + exitCode);
 
         /* El segundo proceso es el que ejecuta el script de python, y lo hace perfectamente, pero no he conseguido
            redirigir la salida del script a un fichero de texto, lo he intentado de varias formas pero no he conseguido
            que funcione, por lo que al final lo que hace es imprimir en pantalla el resultado del script.
          */
-            ProcessBuilder pbw = new ProcessBuilder("python", "src/Tarea7.1.py");
-            pbw.inheritIO();
-            Process p2 = pbw.start();
-            InputStream is = p2.getInputStream();
+        ProcessBuilder pbw = new ProcessBuilder("python", "src/Tarea7.1.py");
+        pbw.inheritIO();
+        Process p2 = pbw.start();
+        InputStream is = p2.getInputStream();
 
-            String contenidopy = new String(p2.getInputStream().readAllBytes());
+        String contenidopy = new String(p2.getInputStream().readAllBytes());
 
-            System.out.println("Contenido de Tarea7.1.py "+contenidopy);
+        System.out.println("Contenido de Tarea7.1.py "+contenidopy);
 
-            int exitCodew = p2.waitFor();
-            System.out.println("el comando ha finalizado con código: " + exitCodew);
+        int exitCodew = p2.waitFor();
+        System.out.println("el comando ha finalizado con código: " + exitCodew);
 
-            is.close();
+        is.close();
 
-        }
     }
-
+}
