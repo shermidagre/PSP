@@ -12,8 +12,8 @@ public class Tarea6 {
               nivel1.iniciarInterfaz();
        */
 
-       Interfaz2 nivel2 = new Interfaz2();
-       nivel2.iniciarInterfaz2();
+       Interfaz nivel2 = new Interfaz();
+       nivel2.iniciarInterfaz();
 
        }
 
@@ -48,25 +48,6 @@ public class Tarea6 {
                 System.out.println("La ip : "+ ip +"se ha ejecutado: "+ exitCode);
 
             }
-
-    }
-    static class Interfaz2 {
-        public void iniciarInterfaz2() throws IOException, InterruptedException {
-            Scanner scanner = new Scanner(System.in);
-            Lanzador2 lanzador = new Lanzador2();
-            while (true) {
-                System.out.println("Introduce el host o IP (o salir para terminar): ");
-                String ip = scanner.nextLine();
-                //ip = www.google.com , utilizarla la ip que tengas para probar
-                if (ip.equalsIgnoreCase("salir")) {
-                    break;
-                }
-                System.out.println("ejecutando comando ping para el host o ip : " + ip);
-                    lanzador.lanzar2(ip);
-
-            }
-            scanner.close();
-        }
 
     }
 
