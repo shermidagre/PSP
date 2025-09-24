@@ -55,11 +55,8 @@ public class Tarea6 {
     static class Lanzador2{
         public void lanzar2( String ip) throws IOException, InterruptedException {
             ProcessBuilder pb = new ProcessBuilder("ping","-c","4",ip); // Hay que darle un numero de paquetes a enviar para que funcione bien
-
             Process p = pb.start();
-
             int exitCode =p.waitFor();
-
 
             // Para leer la salida del comando y asi poder concatenar un string en fucnion del resultado que aslga
             String linea;
@@ -83,5 +80,4 @@ public class Tarea6 {
         }
 
     }
-
 }
