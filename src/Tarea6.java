@@ -20,7 +20,8 @@ public class Tarea6 {
        static class Interfaz {
         public void iniciarInterfaz() throws IOException, InterruptedException {
             Scanner scanner = new Scanner(System.in);
-            Lanzador lanzador = new Lanzador();
+            //Lanzador lanzador = new Lanzador();
+            Lanzador2 lanzador = new Lanzador2();
             while (true) {
                 System.out.println("Introduce el host o IP (o salir para terminar): ");
                 String ip = scanner.nextLine();
@@ -29,8 +30,8 @@ public class Tarea6 {
                     break;
                 }
                 System.out.println("ejecutando comando ping para el host o ip : " + ip);
-                lanzador.lanzar(ip);
-
+                lanzador.lanzar2(ip);
+                //lanzador.lanzar(ip);
                 }
             scanner.close();
             }
