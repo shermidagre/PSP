@@ -1,6 +1,4 @@
-import java.awt.font.TextAttribute;
 import java.util.Scanner;
-import static java.lang.Integer.parseInt;
 
 public class Tarea11 extends Thread{
 
@@ -16,13 +14,14 @@ public class Tarea11 extends Thread{
 
     @Override
     public void run() {
-
+        final long intervalomensaje = 1000;
         int it= 0;
         int v = n;
         int siguientehilo = v + 1;
         Thread hilohijo = new Tarea11(getName(), siguientehilo, nhilos,itusuario);
 
         long inicio = System.currentTimeMillis();
+        long tiempoUltimoMensaje = System.currentTimeMillis();
 
         if (this.n == 1) {
             System.out.println("[" + "Control central" + "]" + " Vigilando a : "+ getName() + " " + n );
@@ -32,7 +31,6 @@ public class Tarea11 extends Thread{
             hilohijo.start();
         }
 
-
         while (it < itusuario) {
 
             long tiempoAleatorio = (long) (Math.random() * 500 + 100); // Rango de 100 a 600 ms
@@ -41,18 +39,26 @@ public class Tarea11 extends Thread{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             it++;
-
             System.out.println("[" + getName() + " "+ n +"]" + " Iteracion " + it);
 
+            if (System.currentTimeMillis() > tiempoUltimoMensaje + intervalomensaje) {
+
+                if (this.n == 1) {
+                    long segundos = intervalomensaje /1000;
+                    System.out.println("[Control central] VIGILANCIA. Ha pasado " + segundos + " segundo.");
+                }
+
+                tiempoUltimoMensaje = System.currentTimeMillis();
             }
 
+            }
         try {
             hilohijo.join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
         long fin = System.currentTimeMillis();
             long duracion = fin - inicio;
 
