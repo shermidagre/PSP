@@ -74,16 +74,27 @@ public class Tarea11 extends Thread{
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int numHilos ;
-        int itusuario;
+        int itusuario ;
         boolean entradaValida = false;
 
         do {
             System.out.print("Elige número de hilos (debe ser un número entero): ");
             if (s.hasNextInt()) {
                 numHilos = s.nextInt();
-                System.out.println("Has elegido " + numHilos + " hilos.");
+                if (numHilos == 1){
+                    System.out.println("Has elegido " + numHilos + " hilo");
+                }else {
+                    System.out.println("Has elegido " + numHilos + " hilos ");
+                }
+
                 System.out.println("Elige número de iteraciones por hilo (debe ser un número entero): ");
                 itusuario = s.nextInt();
+                if (itusuario == 1){
+                    System.out.println("Has elegido " + itusuario + " iteracion por hilo");
+                }else {
+                    System.out.println("Has elegido " + itusuario + " iteraciones por hilo");
+                }
+
                 entradaValida = true;
 
             } else {
