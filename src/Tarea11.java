@@ -5,9 +5,9 @@ import static java.lang.Integer.parseInt;
 public class Tarea11 extends Thread{
 
      private int nhilos;
-     private String n;
+     private int n;
 
-    public Tarea11 (String nombre ,String n,int nhilos) {
+    public Tarea11 (String nombre ,int n,int nhilos) {
         super(nombre);
         this.n = n;
         this.nhilos = nhilos;
@@ -17,17 +17,17 @@ public class Tarea11 extends Thread{
     public void run() {
 
         int it= 0;
-        int valornumerico = Integer.parseInt(n);
-        String siguientehilo = Integer.toString(valornumerico + 1);
+        int v = n;
+        int siguientehilo = v + 1;
         Thread hilohijo = new Tarea11(getName(), siguientehilo, nhilos);
 
         long inicio = System.currentTimeMillis();
 
-        if (this.n.equals("1")) {
+        if (this.n == 1) {
             System.out.println("[" + "Control central" + "]" + " Vigilando a : "+ getName() + " " + n );
         }
 
-        if (valornumerico < nhilos) {
+        if (v < nhilos) {
             hilohijo.start();
         }
 
@@ -46,7 +46,7 @@ public class Tarea11 extends Thread{
             System.out.println("[" + getName() + " "+ n +"]" + " Iteracion " + it);
 
             }
-        // para terminar el orden
+
         try {
             hilohijo.join();
         } catch (InterruptedException e) {
@@ -55,13 +55,13 @@ public class Tarea11 extends Thread{
         long fin = System.currentTimeMillis();
             long duracion = fin - inicio;
 
-        if (this.n.equals("1") && it == 5) {
+        if (this.n == 1 && it == 5) {
             System.out.println("---------------------------------");
             System.out.println("[" + getName() + " " + n + "] " + "Ha terminado " + "\nTiempo total de la caida: "+  duracion + " ms");
             System.out.println("---------------------------------");
         }
 
-        if (!(this.n.equals("1"))) {
+        if (this.n != 1 ) {
             System.out.println("[" + getName() + " " + n + "] " + "Ha terminado " );
 
         }
@@ -90,7 +90,7 @@ public class Tarea11 extends Thread{
         } while (!entradaValida);
 
         if (numHilos >= 1){
-            new Tarea11("Hilo", "1", numHilos).start();
+            new Tarea11("Hilo", 1, numHilos).start();
         }
 
         s.close();
