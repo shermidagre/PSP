@@ -31,6 +31,7 @@ public class Tarea11 extends Thread{
             hilohijo.start();
         }
 
+
         while (it < 5) {
 
             long tiempoAleatorio = (long) (Math.random() * 500 + 100); // Rango de 100 a 600 ms
