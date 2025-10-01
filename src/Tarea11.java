@@ -21,13 +21,19 @@ public class Tarea11 extends Thread{
         String siguientehilo = Integer.toString(valornumerico + 1);
         Thread hilohijo = new Tarea11(getName(), siguientehilo, nhilos);
 
+        long inicio = System.currentTimeMillis();
+
+        if (this.n.equals("1")) {
+            System.out.println("[" + "Control central" + "]" + " Vigilando a : "+ getName() + " " + n );
+        }
+
         if (valornumerico < nhilos) {
             hilohijo.start();
         }
 
         while (it < 5) {
 
-            long tiempoAleatorio = (long) (Math.random() * 600 + 100); // Rango de 100 a 600 ms
+            long tiempoAleatorio = (long) (Math.random() * 500 + 100); // Rango de 100 a 600 ms
             try {
                 Thread.sleep(tiempoAleatorio);
             } catch (InterruptedException e) {
@@ -35,11 +41,29 @@ public class Tarea11 extends Thread{
             }
 
             it++;
-            System.out.println("[" + getName() + " "+ n +"]" + "Iteracion " + it);
+
+            System.out.println("[" + getName() + " "+ n +"]" + " Iteracion " + it);
 
             }
+        // para terminar el orden
+        try {
+            hilohijo.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        long fin = System.currentTimeMillis();
+            long duracion = fin - inicio;
 
-            System.out.println("[" + getName() + " " + n + "]" + " terminado.");
+        if (this.n.equals("1") && it == 5) {
+            System.out.println("---------------------------------");
+            System.out.println("[" + getName() + " " + n + "] " + "Ha terminado " + "\nTiempo total de la caida: "+  duracion + " ms");
+            System.out.println("---------------------------------");
+        }
+
+        if (!(this.n.equals("1"))) {
+            System.out.println("[" + getName() + " " + n + "] " + "Ha terminado " );
+
+        }
 
         }
 
@@ -57,7 +81,6 @@ public class Tarea11 extends Thread{
                 entradaValida = true;
 
             } else {
-                System.out.println("⚠️");
                 System.out.println("Entrada no válida. Se asignará el valor por defecto de 5 hilos.");
                 numHilos = 5;
                 break;
