@@ -6,7 +6,7 @@ public class Tarea11 extends Thread{
 
      private int nhilos;
      private int n;
-     private static int itusuario;
+     private int itusuario;
     public Tarea11 (String nombre ,int n,int nhilos, int itusuario) {
         super(nombre);
         this.n = n;
