@@ -75,7 +75,7 @@ public class Tarea11 extends Thread{
         Scanner s = new Scanner(System.in);
         int numHilos ;
         int itusuario ;
-        boolean entradaValida = false;
+        boolean entradaValida ;
 
         do {
             System.out.print("Elige número de hilos (debe ser un número entero): ");
