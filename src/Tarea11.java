@@ -46,7 +46,7 @@ public class Tarea11 extends Thread{
 
                 if (this.n == 1) {
                     long segundos = intervalomensaje /1000;
-                    System.out.println("[Control central] VIGILANCIA. Ha pasado " + segundos + " segundo.");
+                    System.out.println("[Control central] Ha pasado " + segundos + " segundo.");
                 }
 
                 tiempoUltimoMensaje = System.currentTimeMillis();
