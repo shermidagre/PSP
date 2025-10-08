@@ -9,7 +9,7 @@ public class Tarea13 extends Thread{
 
         for (int i = 0 ; i<11 ; i++){
             System.out.println(" Hilo --> " + getName() +" valor de i : " + i + " Prioridad : "  + getPriority());
-            long tiempoAleatorio = (long) (Math.random() * 900 + 100); // Rango de 100 a 600 ms
+            long tiempoAleatorio = (long) (Math.random() * 900 + 100); // Rango de 100 a 1000 ms
             try {
                 Thread.sleep(tiempoAleatorio);
             } catch (InterruptedException e) {
