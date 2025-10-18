@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Tarea19 extends Thread {
 
-    // 1. Contadores estáticos (compartidos)
     public static int contadora = 0;
     public static int contadore = 0;
     public static int contadori = 0;
@@ -11,9 +10,6 @@ public class Tarea19 extends Thread {
     public static int contador  = 0 ;
     public static String texto;
 
-    // 2. EL OBJETO DE SINCRONIZACIÓN COMPARTIDO.
-    // Este objeto es estático y final para que sea el mismo para todos los hilos
-    // y no pueda ser cambiado. Es el 'candado' que todos los hilos usarán.
     static final Object contadorletras = new Object();
 
     char vocal;
@@ -62,7 +58,6 @@ public class Tarea19 extends Thread {
         System.out.println("Introduce un texto:");
         texto = sc.nextLine();
 
-        // Creamos e iniciamos los hilos (es necesario 'start()')
         Tarea19 Hiloa = new Tarea19("Hilo A", 'a');
         Tarea19 Hiloe = new Tarea19("Hilo E", 'e');
         Tarea19 Hiloi = new Tarea19("Hilo I", 'i');
