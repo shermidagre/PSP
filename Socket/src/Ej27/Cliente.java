@@ -11,36 +11,48 @@ import java.util.Scanner;
 
 public class Cliente {
 
-    InetSocketAddress dir = new InetSocketAddress("localhost", 6666);
 
     void main() throws IOException {
-        Scanner sc = new Scanner(System.in);
-        String mensajeUsuario = "";
-
         try {
-            while (mensajeUsuario != "adios"){
 
-            System.out.println("Envia un mensaje al servidor");
-            mensajeUsuario = sc.nextLine();
+            InetSocketAddress dir = new InetSocketAddress("localhost", 6666);
+
+            Scanner sc = new Scanner(System.in);
 
             Socket socket = new Socket();
+
             socket.connect(dir);
 
-            System.out.println("Conectado al servidor ");
-
             PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);
-            escritor.println(mensajeUsuario);
-
-            System.out.println("Mensaje enviado : " + mensajeUsuario);
 
             BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            List<String> respuestasServidor = lector.readAllLines();
 
 
-            System.out.println("Servidor dice " + respuestasServidor);
+            while (true) {
 
+                    System.out.println("Envia un mensaje al servidor");
+                    String mensajeUsuario = sc.nextLine();
+
+                    System.out.println("Conectado al servidor ");
+
+                    escritor.println(mensajeUsuario);
+
+                if (mensajeUsuario.equals("adios")) {
+                    break;
+                } else {
+
+                    System.out.println("Mensaje enviado : " + mensajeUsuario);
+
+
+                    String respuestasServidor = lector.readLine();
+
+
+                    System.out.println("Seervidor dice : " + respuestasServidor);
+
+                }
             }
+            socket.close();
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());

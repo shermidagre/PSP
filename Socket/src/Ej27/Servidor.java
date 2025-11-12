@@ -18,30 +18,26 @@ public class Servidor {
             System.out.println("Esperando conexiones");
             Socket socket = servidor.accept();
 
-
             PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);
 
             BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            String mensaje = lector.readLine();
+            String mensaje;
+
+        while (true) {
+            mensaje = lector.readLine();
+            if (mensaje.equals("adios")){
+                break;
+            }else {
+                escritor.println("ECO ->> " + mensaje);
+                System.out.println("1 - Mensaje hardcodeado : " + mensaje +" hardcodeado" );
+            }
+
+        }
+            socket.close();
 
 
-            while ((mensaje != null)) {
-
-
-
-                if (mensaje.equals("adios")){
-                    socket.close();
-                    servidor.close();
-                    break;
-                }else {
-                    escritor.println("Mensaje recibido en el servidor : " + mensaje);
-                    System.out.println("1 - Mensaje hardcodeado : " + mensaje +" hardcodeado" );
-                }
-
-
-
-            }}catch (Exception e){
+            }catch (Exception e){
             System.out.println("Error: " + e.getMessage());
         }
     }
