@@ -1,5 +1,4 @@
-## Diagrama mermaid de como interactua por
-detras el programa
+## Diagrama mermaid de como interactua por detras el programa
 
 ````mermaid
 
