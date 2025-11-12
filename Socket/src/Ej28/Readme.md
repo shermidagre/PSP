@@ -73,9 +73,7 @@ classDiagram
     Socket --> PrintWriter : interactúa con OutputStream
 
 ````
-[DiagramaInterno.mmd](DiagramaInterno.mmd)
 ##  Diagrama de flujo
-[Diagramaconexiones.mmd](Diagramaconexiones.mmd)
 ````mermaid
 sequenceDiagram
     participant Cliente
@@ -96,4 +94,6 @@ sequenceDiagram
     Cliente->>Servidor: Cerrar socket local
 ````
 
-[Diagramaconexiones.mmd](Diagramaconexiones.mmd)
+## Configuracion de multiples usuarios
+
+![fotoConfiguracionCliente.png](fotoConfiguracionCliente.png)
