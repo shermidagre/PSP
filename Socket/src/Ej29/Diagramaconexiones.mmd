@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant Cliente
+    participant Servidor
+
+    Cliente->>Servidor: Conectar (puerto 6666)
+    Servidor->>Cliente: Aceptar conexión y crear GestorClientes
+
+loop Intercambio de operaciones
+Cliente->>Servidor: Enviar "operacion;valor1;valor2"
+Servidor->>Cliente: Responder con "resultado" o "error: ..."
+end
+
+Cliente->>Servidor: Enviar "adios"
+Servidor->>Cliente: Cerrar conexión
+Cliente->>Servidor: Cerrar socket local
