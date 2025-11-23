@@ -1,4 +1,4 @@
-package pruebaEx;
+package Random.pruebaexamen2.pruebaEx;
 
 public class Tortuga extends Thread{
     private static final int META = 100;

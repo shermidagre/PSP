@@ -1,4 +1,4 @@
-package pruebaEx;
+package Random.pruebaexamen2.pruebaEx;
 
 public class Carrera {
     public static boolean carreraTerminada;

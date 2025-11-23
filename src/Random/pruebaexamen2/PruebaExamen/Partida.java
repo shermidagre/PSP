@@ -1,4 +1,4 @@
-package PruebaExamen;
+package Random.pruebaexamen2.PruebaExamen;
 
 public class Partida extends Thread {
 

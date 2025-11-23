@@ -1,4 +1,4 @@
-package p1;
+package Random.pruebaexamen2.p1;
 
 import java.util.Random;
 

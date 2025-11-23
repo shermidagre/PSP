@@ -1,5 +1,5 @@
 // Archivo: Liebre.java
-package pruebaEx;
+package Random.pruebaexamen2.pruebaEx;
 
 public class Liebre extends Thread {
     private static final int META = 100;

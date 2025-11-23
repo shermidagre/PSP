@@ -1,4 +1,4 @@
-package pruebaexamen2;
+package Random.pruebaexamen2;
 
 public class Estadio {
     void main() {
