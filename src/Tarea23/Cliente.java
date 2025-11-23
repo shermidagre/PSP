@@ -1,45 +1,34 @@
 package Tarea23;
 
-public class Cliente implements Runnable{
-    private  String nombre ;
-    double numeroRandom = Math.random()*100 ;
-    private  double saldo ;
+public class Cliente extends Thread{
+    private final int idCliente;
+    private final SuperMercado supermercado;
 
-    public Cliente(String nombre, double saldo){
-        this.nombre = nombre;
-        this.saldo = saldo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    public double getNumeroRandom() {
-        return numeroRandom;
-    }
-
-    public void setNumeroRandom(double numeroRandom) {
-        this.numeroRandom = numeroRandom;
+    public Cliente(int idCliente, SuperMercado supermercado) {
+        this.idCliente = idCliente;
+        this.supermercado = supermercado;
     }
 
     @Override
     public void run() {
+        simularTiempoCompra();
 
+        try {
+            int importePago = (int) (Math.random() * 1590) + 10;
+            // por poner algo de rango entre 10 y 1600
+            supermercado.atenderCliente(idCliente, importePago);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
-    public String toString(){
-        return "Soy : " + nombre +
-        "mi saldo es : " + saldo;
+
+    private void simularTiempoCompra() {
+        int tiempoEsperaMs = (int) (Math.random() * 100) + 1000;
+        System.out.println("Tiempo de compra del cliente " + idCliente + ": " + tiempoEsperaMs + " ms.");
+        try {
+            Thread.sleep(tiempoEsperaMs);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
