@@ -12,7 +12,7 @@ Este proyecto demuestra los principios de la programación en red, la separació
 
 ## Índice
 
-- [Captura de Pantalla del funcionamiento](#1-captura-de-pantalla)
+- [Captura de Pantalla del funcionamiento](#1-interfaz-)
 - [Requisitos Previos](#2-requisitos-previos)
 - [Guía de Instalación y Configuración (JavaFX en IntelliJ)](#3-guía-de-instalación-y-configuración-javafx-en-intellij)
 - [Estructura del Proyecto](#4-estructura-del-proyecto)
@@ -22,7 +22,7 @@ Este proyecto demuestra los principios de la programación en red, la separació
 
 ---
 
-## 1. Captura de Pantalla
+## 1. Interfaz 
 
 * La calculadora de leed_malditos :) *
 
