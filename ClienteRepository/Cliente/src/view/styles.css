@@ -1,0 +1,56 @@
+.root {
+    -fx-background-color: #333333; /* Fondo principal oscuro */
+}
+
+/* Estilo para el campo de Historial (Ahora es un TextField, y queremos fondo blanco) */
+.history-field {
+    -fx-background-color: #FFFFFF; /* Fondo blanco */
+    -fx-text-fill: #333333;      /* Texto oscuro */
+    -fx-padding: 5 10 5 10;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 18pt;
+}
+
+/* Estilo para el campo de Resultado Principal (El box grande, que se mantiene oscuro) */
+.result-field {
+    -fx-background-color: #222222; /* Fondo oscuro */
+    -fx-text-fill: #FFFFFF;      /* Texto claro (rojo en tu imagen original, lo dejaremos blanco por defecto) */
+    -fx-padding: 10 10 10 10;
+    -fx-border-color: #FF6666; /* Borde rojo */
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+/* Estilo general para todos los botones */
+.button {
+    -fx-background-color: #555555; /* Fondo de botones (gris oscuro) */
+    -fx-text-fill: #FFFFFF;        /* Texto blanco */
+    -fx-font-size: 18pt;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
+/* Estilo para los botones de operación (rojos) */
+.operator-button {
+    -fx-background-color: #FF6666; /* Rojo */
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Estilo para los botones de función (como '=' y '.' ) */
+.function-button {
+    -fx-background-color: #777777; /* Un gris intermedio */
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Efecto hover */
+.button:hover {
+    -fx-opacity: 0.8;
+}
+
+/* Efecto presionado */
+.button:pressed {
+    -fx-translate-y: 1px;
+    -fx-effect: none;
+}
