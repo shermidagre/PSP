@@ -12,7 +12,7 @@ Este proyecto demuestra los principios de la programación en red, la separació
 
 ## Índice
 
-- [Captura de Pantalla](#1-captura-de-pantalla)
+- [Captura de Pantalla del funcionamiento](#1-captura-de-pantalla)
 - [Requisitos Previos](#2-requisitos-previos)
 - [Guía de Instalación y Configuración (JavaFX en IntelliJ)](#3-guía-de-instalación-y-configuración-javafx-en-intellij)
 - [Estructura del Proyecto](#4-estructura-del-proyecto)
@@ -26,7 +26,7 @@ Este proyecto demuestra los principios de la programación en red, la separació
 
 *(Aquí puedes insertar una captura de pantalla de la calculadora en funcionamiento. Basado en nuestro último diseño, debería verse así:)*
 
-> 🖼️ *(Sugerencia: sube una imagen como `screenshot.png` y enlázala con `![Calculadora](screenshot.png)`)*
+> 🖼️ ![Calculadora](Imagenes/img2.png)`)*
 
 ---
 
@@ -84,6 +84,8 @@ El proyecto fallará al ejecutarse si la Máquina Virtual de Java (JVM) no sabe 
 
  *Con esto, el cliente debería poder compilar y ejecutar correctamente.*
 
+---
+![img.png](Imagenes/img.png)
 ---
 
 ## 4. Estructura del Proyecto
