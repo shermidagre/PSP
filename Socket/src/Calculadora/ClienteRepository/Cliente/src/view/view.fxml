@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!-- Controlador en español: CalculadoraController -->
+<?import java.lang.String?>
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CalculadoraController">
+   <children>
+
+      <!-- Box para el Historial (Arriba, Blanco, Pequeño) -->
+      <TextField fx:id="campoHistorial" editable="false" layoutX="20.0" layoutY="20.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="360.0" text="" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <styleClass>
+            <String fx:value="history-field" />
+         </styleClass>
+      </TextField>
+
+      <!-- Box para el Resultado Principal (Debajo del historial, Negro/Oscuro, Grande) -->
+      <TextField fx:id="campoResultado" editable="false" layoutX="20.0" layoutY="70.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="70.0" prefWidth="360.0" text="0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <styleClass>
+            <String fx:value="result-field" />
+         </styleClass>
+      </TextField>
+
+      <!-- Panel de Números (3 columnas) - ORDENADO. Ahora empieza más abajo (160.0) -->
+      <FlowPane alignment="TOP_LEFT" hgap="10.0" layoutX="20.0" layoutY="160.0" prefHeight="310.0" prefWidth="285.0" vgap="10.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="160.0">
+         <children>
+            <!-- Fila 7-8-9 -->
+            <Button mnemonicParsing="false" onAction="#boton7Clicado" prefHeight="75.0" prefWidth="88.0" text="7" />
+            <Button mnemonicParsing="false" onAction="#boton8Clicado" prefHeight="75.0" prefWidth="88.0" text="8" />
+            <Button mnemonicParsing="false" onAction="#boton9Clicado" prefHeight="75.0" prefWidth="88.0" text="9" />
+
+            <!-- Fila 4-5-6 -->
+            <Button mnemonicParsing="false" onAction="#boton4Clicado" prefHeight="75.0" prefWidth="88.0" text="4" />
+            <Button mnemonicParsing="false" onAction="#boton5Clicado" prefHeight="75.0" prefWidth="88.0" text="5" />
+            <Button mnemonicParsing="false" onAction="#boton6Clicado" prefHeight="75.0" prefWidth="88.0" text="6" />
+
+            <!-- Fila 1-2-3 -->
+            <Button mnemonicParsing="false" onAction="#boton1Clicado" prefHeight="75.0" prefWidth="88.0" text="1" />
+            <Button mnemonicParsing="false" onAction="#boton2Clicado" prefHeight="75.0" prefWidth="88.0" text="2" />
+            <Button mnemonicParsing="false" onAction="#boton3Clicado" prefHeight="75.0" prefWidth="88.0" text="3" />
+
+            <!-- Fila 0, Punto, Igual -->
+            <Button mnemonicParsing="false" onAction="#boton0Clicado" prefHeight="75.0" prefWidth="88.0" text="0" />
+            <Button mnemonicParsing="false" onAction="#manejarPuntoDecimal" prefHeight="75.0" prefWidth="88.0" text="." styleClass="function-button" />
+            <Button mnemonicParsing="false" onAction="#calcular" prefHeight="75.0" prefWidth="88.0" text="=" styleClass="function-button" />
+         </children>
+      </FlowPane>
+
+      <!-- Columna de Operadores (Botones Rojos). Ahora empieza más abajo (160.0) -->
+      <VBox layoutX="315.0" layoutY="160.0" prefHeight="310.0" prefWidth="65.0" spacing="10.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="160.0">
+         <children>
+            <!-- BOTÓN 'C' (Limpiar) -->
+            <Button mnemonicParsing="false" onAction="#limpiarPantalla" prefHeight="58.0" prefWidth="75.0" text="C" styleClass="operator-button" />
+            <Button mnemonicParsing="false" onAction="#accionSumar" prefHeight="58.0" prefWidth="75.0" text="+" styleClass="operator-button" />
+            <Button mnemonicParsing="false" onAction="#accionRestar" prefHeight="58.0" prefWidth="75.0" text="-" styleClass="operator-button" />
+            <Button mnemonicParsing="false" onAction="#accionDividir" prefHeight="58.0" prefWidth="75.0" text="/" styleClass="operator-button" />
+            <Button mnemonicParsing="false" onAction="#accionMultiplicar" prefHeight="58.0" prefWidth="75.0" text="*" styleClass="operator-button" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

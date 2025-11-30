@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant Usuario
+    participant Vista (view.fxml)
+    participant CalculadoraController
+    participant ConexionCliente
+    participant Servidor
+    participant JShell (Servidor)
+
+    Usuario->>+Vista (view.fxml): Clics (ej. "5", "+", "10", "=")
+    Vista (view.fxml)->>+CalculadoraController: onAction (ej. calcular())
+    CalculadoraController->>+CalculadoraController: Construir expresión ("5+10")
+    CalculadoraController->>+ConexionCliente: enviarExpresion("5+10")
+    ConexionCliente->>+Servidor: new Socket()
+    ConexionCliente->>Servidor: Escribe "5+10"
+    Servidor->>+JShell: jshell.eval("5+10")
+    JShell-->>-Servidor: Retorna "15"
+    Servidor-->>-ConexionCliente: Escribe respuesta "15"
+    ConexionCliente-->>-CalculadoraController: Retorna "15"
+    CalculadoraController->>+Vista (view.fxml): actualizarCampoResultado("15")
+    Vista (view.fxml)-->>-Usuario: Muestra "15"
