@@ -26,7 +26,7 @@ Este proyecto demuestra los principios de la programación en red, la separació
 
 * La calculadora de leed_malditos :) *
 
-> 🖼️ ![Calculadora](Imagenes/img2.png)`)*
+>  ![Calculadora](Imagenes/img2.png)`)*
 
 ---
 
