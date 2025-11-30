@@ -24,7 +24,7 @@ Este proyecto demuestra los principios de la programación en red, la separació
 
 ## 1. Captura de Pantalla
 
-*(Aquí puedes insertar una captura de pantalla de la calculadora en funcionamiento. Basado en nuestro último diseño, debería verse así:)*
+* La calculadora de leed_malditos :) *
 
 > 🖼️ ![Calculadora](Imagenes/img2.png)`)*
 
