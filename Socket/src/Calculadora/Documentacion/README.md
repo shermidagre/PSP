@@ -165,10 +165,8 @@ sequenceDiagram
     Vista (view.fxml)-->>-Usuario: Muestra "15"
 ```
 
-[prueba.mmd](prueba.mmd)
 
-
-> 💡 *Nota: GitHub no renderiza Mermaid por defecto. Si usas una plataforma que lo soporta (como GitLab o Mermaid Live Editor), el diagrama se mostrará correctamente.*
+> 💡 *Nota: Este funcionamiento es basico, sirve como guia de como nunciona nuestro prohgrama*
 
 ---
 
@@ -179,6 +177,7 @@ sequenceDiagram
 - **`javafx.fxml.LoadException: Missing resource key`**  
   **Causa**: Uso de caracteres especiales (`%`, `←`) en los atributos `text=""` del FXML, que el cargador interpreta erróneamente como claves de internacionalización.  
   **Lección**: Evitar caracteres especiales en FXML o usar sus entidades XML correspondientes, o simplemente usar texto plano (ej. `MOD` o `DEL`).
+  **Recordatorio para mi yo del futuro**: Aprende a hacer cosas simple y escribir un string como es debido no te metas en codigos asci solo pierdes tiempo
 
 - **Inconsistencia FXML/Controlador**  
   **Causa**: Discrepancia entre los nombres de los métodos `onAction` en el FXML y los métodos reales `@FXML` en la clase controladora Java.  
@@ -198,7 +197,9 @@ sequenceDiagram
 ---
 
 🛠️ *Hecho con ❤️ por un desarrollador que cree en la documentación clara y precisa( A MEDIAS ).*🛠️
-🛠️ *Samuel Hermida Gregores*🛠️
+ 
+
+*Samuel Hermida Gregores*
 
 
 ```
