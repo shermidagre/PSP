@@ -10,6 +10,8 @@ import java.util.List;
 import jdk.jshell.JShell;
 import jdk.jshell.SnippetEvent;
 import jdk.jshell.Snippet;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 /**
  * Servidor de calculadora que acepta conexiones de clientes y evalúa expresiones
@@ -21,15 +23,13 @@ public class Servidor implements AutoCloseable {
 	public static final int PUERTO_SERVIDOR = 5555;
 	private final ServerSocket socketServidor;
 	private static final String MENSAJE_ERROR = "Error en el procesamiento de la expresión.";
-	private final JShell evaluadorJshell;
 
 	/**
-	 * Crea e inicializa el ServerSocket y la instancia de JShell.
+	 * Crea e inicializa el ServerSocket y la instancia.
 	 * @throws IOException Si el puerto está en uso o hay un error de red.
 	 */
 	public Servidor() throws IOException {
 		socketServidor = new ServerSocket(PUERTO_SERVIDOR);
-		evaluadorJshell = JShell.create();
 
 		System.out.println("SERVIDOR: Servidor iniciado en el puerto " + PUERTO_SERVIDOR + ".");
 		System.out.println("SERVIDOR: Esperando conexión del cliente...");
@@ -63,7 +63,7 @@ public class Servidor implements AutoCloseable {
 			String expresionDesdeCliente = lector.readLine();
 			System.out.println("SERVIDOR: Tarea recibida: " + expresionDesdeCliente);
 
-			String resultado = evaluarFragmentoConJShell(expresionDesdeCliente);
+			String resultado = evaluarFragmentoConExp4j(expresionDesdeCliente);
 
 			System.out.println("SERVIDOR: Expresión procesada: " + expresionDesdeCliente + " -> Resultado: " + resultado);
 
@@ -80,42 +80,45 @@ public class Servidor implements AutoCloseable {
 		}
 	}
 
-	/**
-	 * Evalúa la expresión matemática recibida utilizando la API JShell.
-	 * @param expresion La cadena de expresión a evaluar (ej: "5+5").
-	 * @return El resultado de la evaluación como String, o un mensaje de error.
-	 */
-	private String evaluarFragmentoConJShell(String expresion) {
-		System.out.println("SERVIDOR JShell: Evaluando expresión: " + expresion);
+    /**
+     * Evalúa la expresión matemática recibida utilizando la librería exp4j.
+     * @param expresion La cadena de expresión a evaluar (ej: "5+5", "sen(45)*2").
+     * @return El resultado de la evaluación como String, o un mensaje de error.
+     */
+    private String evaluarFragmentoConExp4j(String expresion) { // 🔄 Cambiado el nombre del método
+        System.out.println("SERVIDOR exp4j: Evaluando expresión: " + expresion);
 
-		// El método eval devuelve una lista de eventos
-		List<SnippetEvent> eventos = evaluadorJshell.eval(expresion);
+        try {
+            // 1. Crear el constructor de la expresión
+            ExpressionBuilder builder = new ExpressionBuilder(expresion);
 
-		System.out.println("SERVIDOR JShell: Eventos de evaluación generados: " + eventos.size());
+            // 2. Construir la expresión (no necesitamos variables, solo constantes/funciones)
+            Expression e = builder.build();
 
-		// Se asume que solo hay un evento por una expresión simple.
-		if (!eventos.isEmpty() && eventos.get(0).causeSnippet() == null) {
-			SnippetEvent evento = eventos.get(0);
+            // 3. Evaluar la expresión
+            double resultado = e.evaluate();
 
-			// Verifica que la evaluación sea válida y tenga un valor de retorno
-			if (evento.status() == Snippet.Status.VALID && evento.value() != null) {
-				return evento.value(); // El valor del resultado como String
-			}
-		}
-		return MENSAJE_ERROR;
-	}
+            // 4. Devolver el resultado formateado
+            return String.valueOf(resultado);
+
+        } catch (IllegalArgumentException e) {
+            // Esto captura errores de sintaxis (ej. "5+++") o funciones desconocidas
+            System.err.println("SERVIDOR exp4j: Error de sintaxis o función inválida: " + e.getMessage());
+            return MENSAJE_ERROR;
+        } catch (Exception e) {
+            // Captura cualquier otro error durante la evaluación
+            System.err.println("SERVIDOR exp4j: Error desconocido durante la evaluación: " + e.getMessage());
+            return MENSAJE_ERROR;
+        }
+    }
 
 	/**
 	 * Cierra el ServerSocket (implementación de AutoCloseable).
-	 * También cierra la instancia de JShell.
 	 */
 	@Override
 	public void close() throws Exception {
 		if (socketServidor != null) {
 			socketServidor.close();
-		}
-		if (evaluadorJshell != null) {
-			evaluadorJshell.close();
 		}
 		System.out.println("SERVIDOR: Servidor apagado.");
 	}

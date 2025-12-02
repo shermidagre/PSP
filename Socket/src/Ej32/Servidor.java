@@ -9,33 +9,37 @@ public class Servidor {
     void main() {
 
         String mensajeUsuarioAntiguo = null;
-        String mensajeUsuario = null;
 
-        try {
-            DatagramSocket socket = new DatagramSocket(6666);
-            DatagramSocket socketEnvio = new DatagramSocket();
-            InetAddress ipDestino = InetAddress.getByName("localhost");
-
-            byte [] bufferRecepcion = new byte [1024];
-
-
-            DatagramPacket paquete = new DatagramPacket(bufferRecepcion, bufferRecepcion.length);
+        try(DatagramSocket socket = new DatagramSocket(6666)){
 
             System.out.println("Esperando conexiones");
+            byte [] bufferRecepcion = new byte [1024];
+            DatagramPacket paquete = new DatagramPacket(bufferRecepcion, bufferRecepcion.length);
+
 
             while (true){
                 socket.receive(paquete); // bloquea el paquete
+                String mensajeUsuario = new String(paquete.getData(), 0, paquete.getLength()).trim();
+                System.out.println("Recibido: " + mensajeUsuario);
+
                 System.out.println("Cliente conectado ");
-                comprobarMensaje(mensajeUsuario,mensajeUsuarioAntiguo);
-                enviarMensaje(socketEnvio, ipDestino, mensajeUsuario);
+
+                mensajeUsuarioAntiguo = comprobarMensaje(mensajeUsuario, mensajeUsuarioAntiguo);
+
+                String respuesta = "Recibido: " + mensajeUsuario;
+                byte[] bufferEnvio = respuesta.getBytes();
+                DatagramPacket paqueteEnvio = new DatagramPacket(bufferEnvio, bufferEnvio.length,
+                        paquete.getAddress(), paquete.getPort());
+                socket.send(paqueteEnvio);
+
             }
 
 
-            }catch (Exception e){
+        }catch (Exception e){
             System.out.println("Error: " + e.getMessage());
         }
     }
-    public static void comprobarMensaje(String mensajeUsuario, String mensajeUsuarioAntiguo) {
+    public static String comprobarMensaje(String mensajeUsuario, String mensajeUsuarioAntiguo) {
 
         if (mensajeUsuario.length() > mensajeUsuarioAntiguo.length() ){
             System.out.println("El mensaje es más largo que el anterior");
@@ -49,18 +53,6 @@ public class Servidor {
         }else {
             System.out.println("Es el primer mensaje recibido");
         }
-    }
-
-    public static void enviarMensaje(DatagramSocket socketEnvio, InetAddress ipDestino, String mensajeUsuario) {
-        try {
-            byte[] bufferEnvio = mensajeUsuario.getBytes();
-            DatagramPacket paquete1 = new DatagramPacket(bufferEnvio, bufferEnvio.length, ipDestino, 6666);
-
-            System.out.println("Paquetes a enviar:" + mensajeUsuario);
-
-            socketEnvio.send(paquete1);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        return mensajeUsuario;
     }
 }
