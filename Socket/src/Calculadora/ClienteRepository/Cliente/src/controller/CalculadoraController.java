@@ -73,19 +73,7 @@ public class CalculadoraController {
 	 * Añade un punto decimal al operando actual si aún no lo tiene.
 	 */
 	@FXML
-	void manejarPuntoDecimal() {
-		if (esperandoNuevoOperando) {
-			operandoActual = "0";
-			esperandoNuevoOperando = false;
-		}
-		if (!operandoActual.contains(".")) {
-			operandoActual += ".";
-		}
-		actualizarCampoResultado();
-	}
-
-	// NOTA: Los métodos 'cambiarSigno' y 'borrarUltimoDigito' fueron eliminados
-	// porque sus botones ya no están en el FXML para simplificar la interfaz.
+	void manejarPuntoDecimal() {configurarCalculo(".");}
 
 	/* --- Acciones de Botones de Operación --- */
 
