@@ -40,7 +40,7 @@
 
 /* Estilo para los botones de función (como '=' y '.' ) */
 .function-button {
-    -fx-background-color: #777777; /* Un gris intermedio */
+    -fx-background-color: #9999; /* Un gris intermedio */
     -fx-text-fill: #FFFFFF;
 }
 

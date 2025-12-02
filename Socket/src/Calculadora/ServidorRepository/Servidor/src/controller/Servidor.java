@@ -61,11 +61,11 @@ public class Servidor implements AutoCloseable {
 			 PrintWriter respuestaACliente = new PrintWriter(socketCliente.getOutputStream(), autoFlush)) {
 
 			String expresionDesdeCliente = lector.readLine();
-			System.out.println("SERVIDOR: Tarea recibida: " + expresionDesdeCliente);
+			System.out.println("SERVIDOR: Operacion recibida: " + expresionDesdeCliente);
 
 			String resultado = evaluarFragmentoConExp4j(expresionDesdeCliente);
 
-			System.out.println("SERVIDOR: Expresión procesada: " + expresionDesdeCliente + " -> Resultado: " + resultado);
+			System.out.println("SERVIDOR: Operacion procesada: " + expresionDesdeCliente + " -> Resultado: " + resultado);
 
 			if (resultado.equals(MENSAJE_ERROR)) {
 				System.err.println("SERVIDOR: Error fatal. El cálculo falló para la expresión: " + expresionDesdeCliente);
@@ -85,7 +85,7 @@ public class Servidor implements AutoCloseable {
      * @param expresion La cadena de expresión a evaluar (ej: "5+5", "sen(45)*2").
      * @return El resultado de la evaluación como String, o un mensaje de error.
      */
-    private String evaluarFragmentoConExp4j(String expresion) { // 🔄 Cambiado el nombre del método
+    private String evaluarFragmentoConExp4j(String expresion) {
         System.out.println("SERVIDOR exp4j: Evaluando expresión: " + expresion);
 
         try {
@@ -102,11 +102,10 @@ public class Servidor implements AutoCloseable {
             return String.valueOf(resultado);
 
         } catch (IllegalArgumentException e) {
-            // Esto captura errores de sintaxis (ej. "5+++") o funciones desconocidas
             System.err.println("SERVIDOR exp4j: Error de sintaxis o función inválida: " + e.getMessage());
             return MENSAJE_ERROR;
         } catch (Exception e) {
-            // Captura cualquier otro error durante la evaluación
+            // Captura cialquier otro error durante la evaluación
             System.err.println("SERVIDOR exp4j: Error desconocido durante la evaluación: " + e.getMessage());
             return MENSAJE_ERROR;
         }

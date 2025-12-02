@@ -20,11 +20,8 @@ public class CalculadoraController {
 	private TextField campoResultado; // Ventana donde se muestra el número actual o resultado (el box grande)
 	@FXML
 	private TextField campoHistorial; // NUEVO: Ventana donde se muestra la expresión parcial (el box blanco)
-
 	// Variables de estado de la calculadora
-	private String primerOperando = "0";
 	private String operandoActual = "0";
-	private String tipoOperador; // Tipo de operación matemática (+, -, *, /)
 	private boolean esperandoNuevoOperando = false; // Indicador para manejar el inicio de un nuevo número después de un cálculo
 
 	/**
@@ -115,14 +112,12 @@ public class CalculadoraController {
         campoHistorial.setText(""); // limpiar historial
 	}
 
-	/* --- Lógica de Resultado y Borrado --- */
-
+    // Logica de calculo
 	@FXML
 	void calcular() {
         // Solo enviamos si hay algo que no sea solo "0"
         if (operandoActual.length() > 0 && !operandoActual.equals("0")) {
             try {
-                // El servidor ahora espera la expresión completa (ej. "5*5+2*sen(30)")
                 String expresionAEnviar = operandoActual;
 
                 // Llama al nuevo método simplificado de envío
@@ -150,17 +145,8 @@ public class CalculadoraController {
         if (conexionCliente == null) {
             throw new IOException("Conexión al servidor no inicializada.");
         }
-
         // Envío y recepción de la expresión completa
         String resultadoCadena = conexionCliente.enviarExpresion(expresionAEnviar);
-
-        // Verifica si el resultado es un ERROR (del servidor) o un número válido
-        try {
-            // Intentar parsear el resultado para validar que sea un número
-            Double.parseDouble(resultadoCadena);
-        } catch (NumberFormatException e) {
-            return "ERROR"; // Devuelve un error si el servidor no pudo evaluar
-        }
 
         return resultadoCadena;
     }
@@ -175,6 +161,8 @@ public class CalculadoraController {
 		System.err.println("Error al comunicarse con el servidor. Verifique que el servidor esté activo.");
 	}
 
+    // Logica de borrado
+
 	@FXML
 	void limpiarPantalla() {
 		limpiarEstado();
@@ -186,9 +174,7 @@ public class CalculadoraController {
 	 * Resetea todas las variables de estado de la calculadora.
 	 */
 	private void limpiarEstado() {
-		primerOperando = "0";
 		operandoActual = "0";
-		tipoOperador = null;
 		esperandoNuevoOperando = false;
 	}
 }
