@@ -71,10 +71,15 @@ public class CalculadoraController {
 
 	/**
 	 * Añade un punto decimal al operando actual si aún no lo tiene.
+     * Hago esta comprobacion porque si no se buguea con el 0.5
 	 */
 	@FXML
-	void manejarPuntoDecimal() {configurarCalculo(".");}
-
+    void manejarPuntoDecimal() {
+        if (!operandoActual.contains(".")) {
+            operandoActual += ".";
+            actualizarCampoResultado();
+        }
+    }
 	/* --- Acciones de Botones de Operación --- */
 
 	@FXML void accionSumar() { configurarCalculo("+"); }
