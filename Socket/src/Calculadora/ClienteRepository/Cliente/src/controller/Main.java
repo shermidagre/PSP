@@ -12,13 +12,12 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	// Nota: Las dimensiones deben coincidir con la última versión de FXML (400x500)
-	private static final double ANCHO_MINIMO = 400.00;
-	private static final double ALTO_MINIMO = 500.00;
-	private static final String TITULO_APP = "Calculadora Cliente-Servidor";
+	private static final double ANCHO = 400.00;
+	private static final double ALTO = 520.00;
+	private static final String TITULO_APP = "Calculadora";
 	private static final String FXML_PATH = "/view/view.fxml";
 	private static final String CSS_PATH = "/view/styles.css";
-	private static final String IP_SERVIDOR = "127.0.0.1"; // localhost
+	private static final String IP_SERVIDOR = "localhost"; // localhost
 	private static final int PUERTO_SERVIDOR = 5555;
 
 	private Stage escenarioPrincipal;
@@ -41,7 +40,7 @@ public class Main extends Application {
 			FXMLLoader cargadorFxml = new FXMLLoader(getClass().getResource(FXML_PATH));
 			AnchorPane raiz = (AnchorPane) cargadorFxml.load();
 			// Usando las dimensiones actualizadas para el diseño futurista
-			Scene escena = new Scene(raiz, ANCHO_MINIMO, ALTO_MINIMO);
+			Scene escena = new Scene(raiz, ANCHO, ALTO);
 
 			// Aplica la hoja de estilos CSS
 			escena.getStylesheets().add(getClass().getResource(CSS_PATH).toExternalForm());
@@ -52,8 +51,8 @@ public class Main extends Application {
 			calculadoraController.setConexionCliente(conexionCliente);
 
 			// Configuración de la ventana (Stage)
-			escenarioPrincipal.setMinWidth(ANCHO_MINIMO);
-			escenarioPrincipal.setMinHeight(ALTO_MINIMO);
+			escenarioPrincipal.setMinWidth(ANCHO);
+			escenarioPrincipal.setMinHeight(ALTO);
 			escenarioPrincipal.setTitle(TITULO_APP);
 			escenarioPrincipal.setResizable(true); // Se dejó redimensionable en la última versión
 			escenarioPrincipal.setScene(escena);

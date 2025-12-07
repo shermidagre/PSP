@@ -20,11 +20,8 @@ public class CalculadoraController {
 	private TextField campoResultado; // Ventana donde se muestra el número actual o resultado (el box grande)
 	@FXML
 	private TextField campoHistorial; // NUEVO: Ventana donde se muestra la expresión parcial (el box blanco)
-
 	// Variables de estado de la calculadora
-	private String primerOperando = "0";
 	private String operandoActual = "0";
-	private String tipoOperador; // Tipo de operación matemática (+, -, *, /)
 	private boolean esperandoNuevoOperando = false; // Indicador para manejar el inicio de un nuevo número después de un cálculo
 
 	/**
@@ -54,25 +51,12 @@ public class CalculadoraController {
 	 * @param digito El dígito (0-9) a añadir.
 	 */
 	private void manejarEntradaDigito(String digito) {
-		// Si ya hay un resultado o se acaba de presionar un operador,
-		// reiniciamos el operandoActual para empezar el nuevo número.
-		if (esperandoNuevoOperando) {
-			operandoActual = "";
-			esperandoNuevoOperando = false;
+		if (operandoActual.equals("0")) {
+		    operandoActual = digito;
 		}
-
-		// Evita ceros múltiples al inicio (ej: 0005)
-		if (operandoActual.equals("0") && digito.equals("0")) {
-			return;
-		}
-
-		// Si el campo está '0' (inicio) y se presiona un dígito, se limpia.
-		if (operandoActual.equals("0") && digito.matches("[1-9]")) {
-			operandoActual = digito;
-		} else {
-			operandoActual += digito;
-		}
-
+        else {
+            operandoActual += digito;
+        }
 		actualizarCampoResultado();
 	}
 
@@ -87,22 +71,15 @@ public class CalculadoraController {
 
 	/**
 	 * Añade un punto decimal al operando actual si aún no lo tiene.
+     * Hago esta comprobacion porque si no se buguea con el 0.5
 	 */
 	@FXML
-	void manejarPuntoDecimal() {
-		if (esperandoNuevoOperando) {
-			operandoActual = "0";
-			esperandoNuevoOperando = false;
-		}
-		if (!operandoActual.contains(".")) {
-			operandoActual += ".";
-		}
-		actualizarCampoResultado();
-	}
-
-	// NOTA: Los métodos 'cambiarSigno' y 'borrarUltimoDigito' fueron eliminados
-	// porque sus botones ya no están en el FXML para simplificar la interfaz.
-
+    void manejarPuntoDecimal() {
+        if (!operandoActual.contains(".")) {
+            operandoActual += ".";
+            actualizarCampoResultado();
+        }
+    }
 	/* --- Acciones de Botones de Operación --- */
 
 	@FXML void accionSumar() { configurarCalculo("+"); }
@@ -117,90 +94,55 @@ public class CalculadoraController {
 	 * @param proximoOperador El operador a usar (+, -, *, /).
 	 */
 	public void configurarCalculo(String proximoOperador) {
-		// --- LÓGICA DE OPERACIONES COMBINADAS ---
-		// Si ya tenemos un primer operando Y el operando actual no está vacío,
-		// significa que queremos encadenar operaciones.
-		if (!primerOperando.equals("0") && !operandoActual.equals("0") && !esperandoNuevoOperando) {
-			try {
-				// 1. Realiza el cálculo parcial con el operador anterior.
-				String resultadoParcial = enviarExpresionAServidor(primerOperando, tipoOperador, operandoActual, false);
-
-				// 2. Este resultado se convierte en el nuevo 'primerOperando' para la siguiente operación.
-				primerOperando = resultadoParcial;
-				operandoActual = "0"; // Resetea el actual
-			} catch (IOException e) {
-				manejarErrorConexion();
-				return; // Detiene la configuración si hay un error
-			}
-		} else if (!operandoActual.equals("0")) {
-			// Si es la primera operación, simplemente mueve el número a primerOperando.
-			primerOperando = operandoActual;
-			operandoActual = "0";
-		}
-
-		this.tipoOperador = proximoOperador;
-		esperandoNuevoOperando = true;
-		campoHistorial.setText(primerOperando + " " + tipoOperador);
+        // Si el operando actual es "0" (vacío), no agregamos un operador al inicio.
+        if (!operandoActual.equals("0")) {
+            // Simplemente concatenamos el operador (exp4j maneja la precedencia).
+            operandoActual += proximoOperador;
+            // La expresión completa se muestra en campoResultado
+            actualizarCampoResultado();
+        }
+        // El historial ya no se usa para encadenar operaciones parciales.
+        campoHistorial.setText(""); // limpiar historial
 	}
 
-	/* --- Lógica de Resultado y Borrado --- */
-
+    // Logica de calculo
 	@FXML
 	void calcular() {
-		if (primerOperando.equals("0") || operandoActual.equals("0") || tipoOperador == null) {
-			return; // No hay suficientes operandos
-		}
+        // Solo enviamos si hay algo que no sea solo "0"
+        if (operandoActual.length() > 0 && !operandoActual.equals("0")) {
+            try {
+                String expresionAEnviar = operandoActual;
 
-		try {
-			String resultadoFinal = enviarExpresionAServidor(primerOperando, tipoOperador, operandoActual, true);
+                // Llama al nuevo método simplificado de envío
+                String resultadoCadena = enviarExpresionAServidor(expresionAEnviar);
 
-			// Muestra el resultado final
-			operandoActual = resultadoFinal;
-			campoResultado.setText(resultadoFinal);
-			primerOperando = "0"; // Resetea el primer operando
-			tipoOperador = null; // Resetea el operador
-			esperandoNuevoOperando = true; // Permite que el siguiente número borre el resultado
+                campoHistorial.setText(expresionAEnviar + " = ");
 
-		} catch (IOException e) {
-			manejarErrorConexion();
-		}
+                // Muestra el resultado final y lo guarda como la nueva base
+                operandoActual = resultadoCadena;
+                campoResultado.setText(resultadoCadena);
+
+            } catch (IOException e) {
+                manejarErrorConexion();
+            }
+        }
 	}
 
-	/**
-	 * Envía la expresión al servidor y devuelve el resultado.
-	 * @param op1 Primer operando.
-	 * @param op Operador.
-	 * @param op2 Segundo operando.
-	 * @param esFinal Si es la operación final (presionando '=').
-	 * @return El resultado de la operación.
-	 * @throws IOException Si falla la conexión.
-	 */
-	private String enviarExpresionAServidor(String op1, String op, String op2, boolean esFinal) throws IOException {
-		if (conexionCliente == null) {
-			throw new IOException("Conexión al servidor no inicializada.");
-		}
+    /**
+     * Envía la expresión completa al servidor y devuelve el resultado.
+     * @param expresionAEnviar La cadena completa a evaluar (ej: "5*5+2").
+     * @return El resultado de la operación.
+     * @throws IOException Si falla la conexión.
+     */
+    private String enviarExpresionAServidor(String expresionAEnviar) throws IOException {
+        if (conexionCliente == null) {
+            throw new IOException("Conexión al servidor no inicializada.");
+        }
+        // Envío y recepción de la expresión completa
+        String resultadoCadena = conexionCliente.enviarExpresion(expresionAEnviar);
 
-		String expresionAEnviar = op1 + op + op2;
-
-		// Actualiza el historial solo en el cálculo final o al encadenar
-		if (esFinal) {
-			campoHistorial.setText(op1 + " " + op + " " + op2 + " = ");
-		} else {
-			// Mantener el historial de la operación actual al encadenar
-			campoHistorial.setText(op1 + " " + op + " " + op2);
-		}
-
-		String resultadoCadena = conexionCliente.enviarExpresion(expresionAEnviar);
-
-		// Verifica si el resultado es un número válido para evitar errores de JShell
-		try {
-			Double.parseDouble(resultadoCadena);
-		} catch (NumberFormatException e) {
-			return "ERROR"; // Devuelve un error si el servidor no pudo evaluar
-		}
-
-		return resultadoCadena;
-	}
+        return resultadoCadena;
+    }
 
 	/**
 	 * Muestra un mensaje de error de conexión en la pantalla.
@@ -211,6 +153,8 @@ public class CalculadoraController {
 		limpiarEstado();
 		System.err.println("Error al comunicarse con el servidor. Verifique que el servidor esté activo.");
 	}
+
+    // Logica de borrado
 
 	@FXML
 	void limpiarPantalla() {
@@ -223,9 +167,7 @@ public class CalculadoraController {
 	 * Resetea todas las variables de estado de la calculadora.
 	 */
 	private void limpiarEstado() {
-		primerOperando = "0";
 		operandoActual = "0";
-		tipoOperador = null;
 		esperandoNuevoOperando = false;
 	}
 }
