@@ -134,7 +134,7 @@ public class Main34 {
 
             // Comparación de contenido
             if (tamaño1 > tamaño2) {
-                System.out.println("La web con más contenido ha sido: " + url1 + "** con " + tamaño1 + " caracteres.");
+                System.out.println("La web con más contenido ha sido: " + url1 + " con " + tamaño1 + " caracteres.");
             } else if(tamaño2 > tamaño1) {
                 System.out.println("La web con más contenido ha sido: " + url2 + " con " + tamaño2 + " caracteres.");
             }
