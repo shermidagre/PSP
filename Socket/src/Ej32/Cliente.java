@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Cliente {
 
 
-    void main() throws IOException {
+    public static void main(String[] args) throws IOException {
         try ( Scanner sc = new Scanner(System.in)){
             while (true) {
                 enviarMensaje(sc);;

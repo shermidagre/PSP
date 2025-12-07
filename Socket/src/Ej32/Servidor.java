@@ -5,7 +5,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class Servidor {
-    void main() {
+    public static void main(String[] args) {
 
         String mensajeUsuarioAntiguo = null;
 
@@ -17,8 +17,6 @@ public class Servidor {
 
             byte[] bufferRecepcion = new byte[1024];
             DatagramPacket paquete = new DatagramPacket(bufferRecepcion, bufferRecepcion.length);
-
-            InetAddress ipDestino = InetAddress.getByName("localhost");
 
             System.out.println("Esperando conexiones");
 
