@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Calculadora/ClienteRepository/ClienteRepository.iml" filepath="$PROJECT_DIR$/Calculadora/ClienteRepository/ClienteRepository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Calculadora/ServidorRepository/ServidorRepository.iml" filepath="$PROJECT_DIR$/Calculadora/ServidorRepository/ServidorRepository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Socket.iml" filepath="$PROJECT_DIR$/Socket.iml" />
+    </modules>
+  </component>
+</project>
