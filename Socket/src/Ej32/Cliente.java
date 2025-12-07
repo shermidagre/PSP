@@ -18,6 +18,7 @@ public class Cliente {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
     // Lo que he añadido y justificacion :
     /*
     basicamente envia los dato sin recibirlos, por lo cual nunca iban a llegar y arregle el bucle metiendo el datagream socket arriba
