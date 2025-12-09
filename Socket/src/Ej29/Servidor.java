@@ -1,7 +1,5 @@
 package Ej29;
 
-import Ej28.GestorClientes;
-
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;

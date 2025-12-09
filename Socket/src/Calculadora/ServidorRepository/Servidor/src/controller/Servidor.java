@@ -55,7 +55,7 @@ public class Servidor implements AutoCloseable {
         }
     }
 
-    // Añade este método dentro de la clase Servidor (o hazlo estático en Main)
+    // Log
     public static synchronized void escribirLog(String ip, String operacion, String resultado) {
         try (FileWriter fw = new FileWriter("log.txt", true); // 'true' para no borrar lo anterior
              PrintWriter pw = new PrintWriter(fw)) {
