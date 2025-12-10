@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Main35 {
 
-    public static double[] hacerPeticion(String urlString) {
+    public static void hacerPeticion(String urlString) {
 
         // Inicialización para resultados en caso de error
         double[] resultados = {-1, -1, -1, -1, -1};
@@ -86,20 +86,56 @@ public class Main35 {
 
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
         }
-        return resultados;
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // Recuerda usar el ID (90 = bitcoin)
-        System.out.println("Escribe el ID de la moneda (ej: 90): ");
-        String id = sc.nextLine();
-        sc.close();
+     static void main(String[] args) {
+         do {
+             System.out.println("Bienvenido al inspector de monedas bitcoineras.");
+             System.out.println("¿Desea consultar una moneda? (s/n): ");
+             Scanner scanner = new Scanner(System.in);
+             String respuesta = scanner.nextLine();
+             if (respuesta.equalsIgnoreCase("s")) {
+                 break;
+             } else if (respuesta.equalsIgnoreCase("n")) {
+                 System.out.println("Saliendo del programa.");
+                 return;
+             } else {
+                 System.out.println("Entrada no válida. Por favor, responda con 's' o 'n'.");
+             }
+         } while (true);{
+             Scanner sc = new Scanner(System.in);
+             // Recuerda usar el ID (90 = bitcoin)
+             System.out.println("Listado de IDs de monedas:");
+             System.out.println("Bitcoin: 90");
+             System.out.println("Ethereum: 80");
+             System.out.println("Tether: 48543");
+             System.out.println("BNB: 2710");
+             System.out.println("USD Coin: 3408");
+             System.out.println("Escribe el ID de la moneda: ");
+             String id = sc.nextLine();
+             if (id.isEmpty()) {
+                 // Si no se introduce nada, elegimos un ID aleatorio
+                 String[] ids = {"90", "80", "48543", "2710", "3408"};
+                 Random rand = new Random();
+                 id = ids[rand.nextInt(ids.length)];
+                 System.out.println("No se introdujo ningún ID. Se ha seleccionado aleatoriamente el ID: " + id);
+             } else if (id.equalsIgnoreCase("Bitcoin")) {
+                 id = "90";
+             } else if (id.equalsIgnoreCase("Ethereum")) {
+                 id = "80";
+             } else if (id.equalsIgnoreCase("Tether")) {
+                 id = "48543";
+             } else if (id.equalsIgnoreCase("BNB")) {
+                 id = "2710";
+             } else if (id.equalsIgnoreCase("USD Coin")) {
+                 id = "3408";
+             }
+             sc.close();
 
-        String url = "https://api.coinlore.net/api/ticker/?id=" + id;
+             String url = "https://api.coinlore.net/api/ticker/?id=" + id;
 
-        hacerPeticion(url);
-    }
+             hacerPeticion(url);
+         }
+     }
 }
