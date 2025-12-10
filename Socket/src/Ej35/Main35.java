@@ -3,6 +3,7 @@ package Ej35;
 import com.google.gson.Gson;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -17,6 +18,9 @@ public class Main35 {
 
         // Inicialización para resultados en caso de error
         double[] resultados = {-1, -1, -1, -1, -1};
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_GREEN = "\u001B[32m";
+
 
 
         HttpClient client = HttpClient.newBuilder()
@@ -34,7 +38,6 @@ public class Main35 {
         long tiempoInicio = System.currentTimeMillis();
 
         try {
-            // Envío síncrono de la petición y manejo del cuerpo como String
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             // 4. Fin de la medición de tiempo
             long fin = System.currentTimeMillis();
@@ -53,39 +56,47 @@ public class Main35 {
                 Moneda[] listaMonedas = gson.fromJson(cuerpo, Moneda[].class);
 
                 // Verificamos que la lista no esté vacía
-                double precio = 0.0;
-                int ranking = 0;
-                double percent_change_24h = 0.0;
+                double precio;
+                int ranking;
+                double percent_change_24h;
                 if (listaMonedas.length > 0) {
                     Moneda miMoneda = listaMonedas[0]; // Cogemos la moneda
 
                     // Convertimos el precio de String a double
                     precio = Double.parseDouble(miMoneda.price_usd);
                     ranking = Integer.parseInt(miMoneda.rank);
-                    percent_change_24h = Double.parseDouble(miMoneda.percent_change_24h);
 
 
                     System.out.println("Moneda: " + miMoneda.name);
                     System.out.println("Símbolo: " + miMoneda.symbol);
                     System.out.println("Precio USD: " + precio);
                     System.out.println("Ranking: " + ranking);
-                    System.out.println("Variacion 24h: " + percent_change_24h);
+
+                    if (miMoneda.percent_change_24h.contains("-")) {
+                        percent_change_24h = Double.parseDouble(miMoneda.percent_change_24h);
+                        System.out.println(ANSI_RED + "Variacion 24h: " + percent_change_24h);
+                    } else {
+                        percent_change_24h = Double.parseDouble(miMoneda.percent_change_24h);
+                        System.out.println(ANSI_GREEN + "Variacion 24h: +" + percent_change_24h);
+                    }
+
+                    // Guardar JSON
+                    try (FileWriter fw = new FileWriter("inspector.json")) {
+                        fw.write(cuerpo);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    resultados[0] = tiempoRespuesta;
+                    resultados[1] = bytes;
+                    resultados[2] = precio;
+                    resultados[3] = ranking;
+                    resultados[4] = percent_change_24h;
                 }
 
-                // Guardar JSON
-                try (FileWriter fw = new FileWriter("inspector.json")) {
-                    fw.write(cuerpo);
-                }
-
-                resultados[0] = tiempoRespuesta;
-                resultados[1] = bytes;
-                resultados[2] = precio;
-                resultados[3] = ranking;
-                resultados[4] = percent_change_24h;
             }
-
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
