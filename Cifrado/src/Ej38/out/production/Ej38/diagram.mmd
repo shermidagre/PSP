@@ -1,0 +1,10 @@
+graph TD
+    A[Inicio] --> B{Solicitar nombre};
+    B --> C{Solicitar texto a cifrar};
+    C --> D[Llamar al método usuario];
+    D --> E{Crear instancia de MessageDigest con SHA-256};
+    E --> F{Convertir texto a bytes};
+    F --> G{Calcular hash};
+    G --> H{Convertir hash a hexadecimal};
+    H --> I[Mostrar texto cifrado];
+    I --> J[Fin];
